@@ -1,0 +1,121 @@
+<script type="text/discourse-plugin" version="0.6">
+  const ajax = require('discourse/lib/ajax').ajax;
+  const Topic = require('discourse/models/topic').default;
+  
+  api.registerConnectorClass('below-site-header', 'custom-homepage', {
+    actions: {
+      createWyzeMoment(){
+        if (Discourse.User.current()){
+          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic", topicTags: "wyze-moments"});
+        }
+        else {
+          return window.location = Discourse.getURL("/signup");
+        }
+      },
+      createLearnAndExplore(){
+        if (Discourse.User.current()){
+          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic", topicTags: "learn-and-explore"});
+        }
+        else {
+          return window.location = Discourse.getURL("/signup");
+        }
+      },
+    }, 
+    setupComponent(args, component) {
+      component.set('hostname', window.location.hostname);
+
+      api.onPageChange((url, title) => {
+        if (url == "/"){
+          $('html').addClass('show-custom-homepage');
+          component.set('displayCustomHomepage', true);
+       
+          ajax("/tags/wyze-moments.json").then (function(result){
+            topicListOne = [];
+            var usersOne = result.users;
+            result.topic_list.topics.slice(0,5).forEach(function(topic){
+              topic.posters.forEach(function(poster){
+                poster.user = $.grep(usersOne, function(e){ return e.id == poster.user_id; })[0];
+              });
+              topicListOne.push(Topic.create(topic));
+            });
+            component.set('topicListOne', topicListOne);
+          });
+          ajax("/tags/learn-and-explore.json").then (function(result){
+            topicListTwo = [];
+            var usersTwo = result.users;
+            result.topic_list.topics.slice(0,5).forEach(function(topic){
+              topic.posters.forEach(function(poster){
+                poster.user = $.grep(usersTwo, function(e){ return e.id == poster.user_id; })[0];
+              });
+              topicListTwo.push(Topic.create(topic));
+            });
+            component.set('topicListTwo', topicListTwo);
+          });  
+          ajax("/site.json").then (function(result){
+            categoryName = [];
+            result.categories.forEach(function(categories){
+              console.log(categories.name);
+              categoryName.push(categories);
+            });
+            component.set('categoryName', categoryName);
+          });  
+        }
+        else {
+          $('html').removeClass('show-custom-homepage');
+          component.set('displayCustomHomepage', false);
+        }
+      });
+    }
+  });
+</script>
+<script type='text/x-handlebars' data-template-name='/connectors/below-site-header/custom-homepage'>
+  {{#if displayCustomHomepage}}
+  <div class="custom-homepage-wrapper">
+    <div class="wrap homepage-banner">
+      
+    </div>
+    
+    <div class="wrap custom-homepage-columns">
+      <div class="col col-1">
+        <div class="header-wrapper">
+          <h3 class="inline">Wyze Moments</h3>
+          {{#d-button action="createWyzeMoment" class="btn-primary btn"}}Post{{/d-button}}
+        </div>
+        {{topic-list topics=topicListOne showPosters=true}}
+        <a href="/tags/wyze-moments" class="btn-primary btn btn-more">More</a>
+      </div>
+      <div class="col col-2">
+        <div class="header-wrapper">
+          <h3 class="inline">Learn & Explore</h3>
+          {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
+        </div>
+        {{topic-list topics=topicListTwo showPosters=true}}
+        <a href="/tags/learn-and-explore" class="btn-primary btn btn-more">More</a>
+      </div>
+      
+    </div>
+    
+    <div class="wrap">
+      <div class=" homepage-category-boxes">
+        
+        {{#each categoryName as |c|}}
+        <a href="/c/{{c.slug}}">
+            <div class="homepage-category-box">
+              <div class="category-image-wrapper">  
+                {{#unless c.uploaded_logo}}<img class="homepage-category-image" src="https://placehold.it/300x300" />{{/unless}}
+              </div>              
+              <h2>{{#if c.read_restricted}}<i class="fa fa-lock">&nbsp;</i>{{/if}}{{c.name}}</h2>
+            </div>
+          </a>
+        {{/each}}
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+  </div> 
+  {{/if}}
+</script>
