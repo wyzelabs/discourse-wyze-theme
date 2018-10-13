@@ -1,0 +1,16 @@
+header_background_image: 
+  default: "/uploads/default/original/1X/28aa9fe20c15200b2bdc848417735a4453c178a4.jpeg"
+  description: image URL for homepage background
+
+homepage_categories: 
+  default: 4
+
+categories_per_row:
+  default: 3
+  type: enum
+  choices:
+    - 3
+    - 4
+
+categories_expandable: 
+  default: true

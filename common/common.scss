@@ -1,5 +1,167 @@
 @import "common/foundation/variables";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i');
 
+// Global
+
+html {
+  font-family: "Open sans", sans-serif;
+  font-size: 15px;
+}
+
+
+
+
+// Buttons, navs
+
+button, 
+.btn,
+.list-controls .select-kit.categories-admin-dropdown button, 
+.list-controls .select-kit.tags-admin-dropdown button, 
+.list-controls .select-kit.category-notifications-button button, 
+.list-controls .select-kit.tag-notifications-button button,
+#topic-footer-buttons .topic-notifications-button .btn {
+  padding: 6px 16px;
+  border: 1px solid $primary;
+  text-transform: uppercase;
+  background: transparent;
+  color: $primary;
+  .d-icon {
+    opacity: 1;
+  }
+  .discourse-no-touch & {
+    &:hover {
+      background: $primary;
+      color: $secondary;
+    }
+  }
+  &.btn-primary {
+    border-color: $tertiary;
+    background: $tertiary;
+    color: $secondary;
+    .discourse-no-touch & {
+      &:hover {
+        border-color: darken($tertiary, 10%);
+        background: darken($tertiary, 10%);
+      }
+    }
+  }
+  &.btn-danger {
+    background: $danger;
+    border-color: $danger;
+    color: $secondary;
+    .discourse-no-touch & {
+      &:hover {
+        background: darken($danger, 10%);
+        border-color: darken($danger, 10%);
+      }
+    }
+  }
+}
+
+.btn-flat .d-icon {
+  opacity: 1;
+}
+
+.d-editor-button-bar .btn {
+  border: none !important;
+}
+
+#reply-control .reply-to .composer-controls button {
+  &:hover {
+    background: transparent;
+  }
+}
+
+.timeline-container {
+  .btn {
+    border: none;
+    margin-left: -.75em;
+  }
+  .topic-timeline .timeline-scrollarea {
+    border-color: $primary-medium;
+  }
+  .topic-timeline .timeline-handle {
+    background: $primary;
+  }
+}
+
+.nav-pills>li {
+  &.active>a {
+    border: 1px solid $quaternary;
+  }
+ >a {
+   padding: 6px 16px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    &:hover {
+      background: transparent;
+      border: 1px solid $quaternary;
+      color: $quaternary;
+    }
+ }
+
+}
+
+.list-controls .btn {
+  font-size: $font-0;
+}
+
+.list-controls .combo-box .combo-box-header {
+  height: auto;
+  padding: 3px 6px 4px 10px;
+}
+
+// Header 
+
+.d-header {
+  box-shadow: none;
+  .contents {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    .title {
+      justify-self: center;
+      grid-row-start: 1;
+      grid-column-start: 2;
+    }
+    .panel {
+      justify-self: end;
+      grid-row-start: 1;
+      grid-column-start: 3;
+    }
+    .extra-info-wrapper {
+      grid-row-start: 1;
+      grid-column-start: 1;
+    }
+   
+
+  }
+
+}
+
+// Category list 
+
+.category-list tbody .category h3 {
+  font-size: 1.4em;
+}
+
+// Topic list 
+
+tbody {
+  border-width: 1px;
+}
+
+.topic-list-item:nth-child(odd) {
+  background: rgba($primary-very-low, .75);
+}
+
+// Topic 
+
+.topic-map section:nth-of-type(2) {
+  border: none;
+}
+
+// Custom homepage layout
 
 .show-custom-homepage {
   #main-outlet {
@@ -8,10 +170,9 @@
 }
 .custom-homepage-wrapper {
   padding-top: 63px;
-  
 
   .homepage-banner {
-    background: url($background);
+    background: url($header_background_image);
     background-repeat: no-repeat;
     background-position: center;
     height: 510px;
@@ -22,18 +183,30 @@
 
   .custom-homepage-columns {
     display: flex;
+    @media screen and (max-width: 750px) {
+      flex-wrap: wrap;
+    }
     .col {
       width: 50%;
+      @media screen and (max-width: 750px) {
+        width: 100%;
+      }
     }
     .col-1 {
-      margin-right: 1em;
+      margin-right: 1.5em;
        + .col-2 {
-      margin-left: 1em;
+      margin-left: 1.5em;
        }
+    }
+    @media screen and (max-width: 750px) {
+      .col-1, .col-2 {
+        margin: 0 0 2em 0 !important;
+      }
     }
     .header-wrapper {
       display: flex;
       margin-bottom: 1em;
+      align-items: flex-start;
       button {
         margin-left: auto;
       }
@@ -47,45 +220,94 @@
       }
     }
 
-    .btn-more {
-      width: 100%;
-    }
   }
 
   .homepage-category-boxes {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 2em;
-    margin: 3em -1.7%;
-    a {
-      flex: 0 1 30%;
-      margin: 0 1.65% 3% 1.65%;  
-      min-width: 0;
+    margin: 3em -1.7% 0;
+    @media screen and (max-width: 700px) {
+      margin-top: 1em;
     }
-    .homepage-category-box {
+    a.box {
+      min-width: 0;
+      &:nth-of-type(n+#{$homepage_categories}) {
+        display: none;
+      }
+      @if $categories_per_row == "3" {
+        flex: 0 1 30%;
+        margin: 0 1.65% 2%;  
+      }
+      @if $categories_per_row == "4" {
+        flex: 0 1 21.7%;
+        margin: 0 1.65% 2%;  
+        @media screen and (max-width: 820px) {
+          flex: 0 1 30%;
+          margin: 0 1.65% 2%;  
+          &:nth-of-type(n+4) {
+            display: none;
+          }
+        }
+        @media screen and (max-width: 700px) {
+          flex: 0 1 46.7%;
+          margin: 0 1.65% 2%;  
+          &:nth-of-type(n+3) {
+            display: none;
+          }
 
+        }
+        @media screen and (max-width: 375px) {
+          flex: 0 1 100%;
+          margin: 0 0 2%;  
+          img {
+            display: none;
+          }
+        }
+      }
+      &.show {
+        display: block !important;
+      }
+    
+    }
+  
+    .homepage-category-box {
       border: 1px solid $primary-low;
       padding: 2em;
       text-align: center; 
-
+      box-sizing: border-box;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       .category-image-wrapper {
-        width: 75%;
-        margin-bottom: 1em;
+        max-height: 170px;
         margin: 0 auto 1em auto;
       }
       img {
         border-radius: 100%;
         width: 100%;
-
       }
       h2 {
+        color: $primary;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
         margin: 0;
         text-align: center;
+        @media screen and (max-width: 920px) {
+          font-size: $font-up-1;
+        }
       }
     }
   }
+}
+
+
+
+.homepage-category-expansion {
+  margin-bottom: 2em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
