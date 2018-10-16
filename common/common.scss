@@ -8,6 +8,8 @@ html {
   font-size: 15px;
 }
 
+$border-radius: 6px;
+
 // Buttons, navs
 
 button, 
@@ -22,6 +24,7 @@ button,
   text-transform: uppercase;
   background: transparent;
   color: $primary;
+  border-radius: $border-radius;
   .d-icon {
     opacity: 1;
   }
@@ -87,6 +90,7 @@ button,
     border: 1px solid $quaternary;
   }
  >a {
+   border-radius: $border-radius;
    padding: 6px 16px;
     text-transform: uppercase;
     border: 1px solid transparent;

@@ -95,10 +95,7 @@
           {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListTwo showPosters=true}}
-        {{#each topicListTwo as |t|}}
-{{#if t.featured_link}}
-<iframe width="560" height="315" src="{{t.featured_link}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>{{/if}}
-        {{/each}}
+      
 
         <a href="/tags/learn-and-explore" class="btn btn-more">More</a>
       </div>
