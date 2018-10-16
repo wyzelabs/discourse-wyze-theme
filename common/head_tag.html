@@ -1,3 +1,4 @@
+
 <script type="text/discourse-plugin" version="0.6">
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
@@ -94,6 +95,11 @@
           {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListTwo showPosters=true}}
+        {{#each topicListTwo as |t|}}
+{{#if t.featured_link}}
+<iframe width="560" height="315" src="{{t.featured_link}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>{{/if}}
+        {{/each}}
+
         <a href="/tags/learn-and-explore" class="btn btn-more">More</a>
       </div>
       
@@ -105,20 +111,19 @@
         {{#each categoryName as |c|}}
         <a href="/c/{{c.slug}}" class="box">
             <div class="homepage-category-box">
-                {{#if c.uploaded_logo}}
+              {{#if c.uploaded_logo}}
               <div class="category-image-wrapper">  
-                <img class="homepage-category-image" src="{{c.uploaded_logo.url}}" />
+                <img class="homepage-category-image" src="{{c.uploaded_logo.url}}" />               
               </div>              
               {{/if}}
+              
+
+
               <h2>{{#if c.read_restricted}}<i class="fa fa-lock">&nbsp;</i>{{/if}}{{c.name}}</h2>
             </div>
           </a>
         {{/each}}
-        
-
-
-     
-
+      
       </div>
       <div class="homepage-category-expansion">
       {{#if themeSettings.categories_expandable}}

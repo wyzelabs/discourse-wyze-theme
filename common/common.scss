@@ -8,9 +8,6 @@ html {
   font-size: 15px;
 }
 
-
-
-
 // Buttons, navs
 
 button, 
@@ -115,6 +112,7 @@ button,
 
 .d-header {
   box-shadow: none;
+  /*
   .contents {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -136,6 +134,8 @@ button,
    
 
   }
+
+  */
 
 }
 
@@ -215,6 +215,14 @@ tbody {
       thead, td.posts-map, td.num.views {
         display: none;
       }
+      td.posters {
+        a {
+          display: none;
+          &:last-of-type {
+            display: inline-block;
+          }
+        }
+      }
       .main-link {
         width: 80%;
       }
@@ -286,6 +294,8 @@ tbody {
       img {
         border-radius: 100%;
         width: 100%;
+        max-height: 150px;
+        max-width: 150px;
       }
       h2 {
         color: $primary;
