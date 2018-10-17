@@ -181,6 +181,10 @@ tbody {
 .custom-homepage-wrapper {
   padding-top: 63px;
 
+  h2 {
+    font-size: 1.75em;
+  }
+
   .homepage-banner {
     background: url($header_background_image);
     background-repeat: no-repeat;
@@ -241,8 +245,9 @@ tbody {
   }
 
   .custom-homepage-wide {
+    padding: 3em 0 2em;
+    margin: 1 em 0;
     h2 {  }
-    margin: 3em auto 2em;
     .custom-homepage-wide-title {
       display: flex;
       button {
@@ -270,9 +275,12 @@ tbody {
         align-items: center;
         flex: 1 1 auto;
         padding: 1em;
+        font-size: $font-up-1;
         font-weight: normal;
+        min-height: 50px;
+        background: $secondary;
         a {
-          color: $primary; 
+          color: $primary;
         }
       }
     }
@@ -290,6 +298,7 @@ tbody {
       i {
         margin-right: .25em;
       }
+   
       img {
         max-width: 40px;
         margin-top: .15em;
@@ -349,7 +358,7 @@ tbody {
   
     .homepage-category-box {
       border: 1px solid $primary-low;
-      padding: 2em 1em;
+      padding: 1em;
       text-align: center; 
       box-sizing: border-box;
       height: 100%;

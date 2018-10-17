@@ -158,7 +158,8 @@
     </div>
     
     
-    <div class="wrap custom-homepage-wide">
+    <div class="custom-homepage-wide">
+      <div class="wrap">
       <div class="custom-homepage-wide-title">
       <h2>Help these Wyze Members
 
@@ -178,10 +179,10 @@
           
           <div class="custom-homepage-wide-topic-info">
             
-            <a href="/t/{{topic.slug}}/{{topic.id}}/{{topic.last_read_post_number}}"><img src="/user_avatar/{{hostname}}/{{topic.last_poster_username}}/370/617_1.png" class="teammember_img" /></a>
+            <a href="/users/{{topic.last_poster_username}}"><img src="/user_avatar/{{hostname}}/{{topic.last_poster_username}}/370/617_1.png" class="teammember_img" /></a>
            
             <div class="custom-homepage-wide-topic-author">
-              <div class="postAuthor"> <a href="/users/{{topic.last_poster_username}}/activity">{{topic.last_poster_username}}</a></div>
+              <div class="postAuthor"> <a href="/users/{{topic.last_poster_username}}">{{topic.last_poster_username}}</a></div>
               <div class="">{{format-date topic.created_at}}</div>
             </div>
             
@@ -198,6 +199,8 @@
     </div>
       
     </div>
+  </div>
+
     <div class="wrap">
       <div class="homepage-category-boxes">
         
