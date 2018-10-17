@@ -1,3 +1,48 @@
+<div id="fb-root"></div>
+
+
+
+<script type="text/discourse-plugin" version="0.8">
+  api.onPageChange(() => {
+    cfmenu();
+  });
+  
+  function cfmenu(){
+    
+    if (window.location.pathname == '/') {
+      
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '1410171982373214',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v3.1'
+        });
+      };
+      
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));      
+      
+      setTimeout(function() {
+        if (typeof(FB) != 'undefined') {
+          
+          window.fbAsyncInit();
+          
+        } 
+      }, 1000)
+    }
+    
+    
+    
+  };
+  
+</script>
+
 
 <script type="text/discourse-plugin" version="0.6">
   const ajax = require('discourse/lib/ajax').ajax;
@@ -24,16 +69,18 @@
       showCategories(){
         $('.box').toggleClass('show');
         $('.btn-more-categories').hide();
-    },
+      },
     }, 
     setupComponent(args, component) {
       component.set('hostname', window.location.hostname);
-
+      
       api.onPageChange((url, title) => {
         if (url == "/"){
           $('html').addClass('show-custom-homepage');
           component.set('displayCustomHomepage', true);
-       
+          
+          
+          
           ajax("/tags/wyze-moments.json").then (function(result){
             topicListOne = [];
             var usersOne = result.users;
@@ -56,6 +103,9 @@
             });
             component.set('topicListTwo', topicListTwo);
           });  
+          ajax("/latest.json?category_id=1&order=posts&ascending=true").then (function(result){
+            component.set('topicListThree', result.topic_list.topics.slice(0,4));
+          });
           ajax("/site.json").then (function(result){
             categoryName = [];
             result.categories.forEach(function(categories){
@@ -87,6 +137,13 @@
           {{#d-button action="createWyzeMoment" class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListOne showPosters=true}}
+        {{#each topicListOne as |t|}}
+        <div  
+        class="fb-video" 
+        data-href="{{t.featured_link}}" 
+        data-width="500" 
+        data-allowfullscreen="true"></div>
+        {{/each}}
         <a href="/tags/wyze-moments" class="btn btn-more">More</a>
       </div>
       <div class="col col-2">
@@ -95,37 +152,76 @@
           {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListTwo showPosters=true}}
-      
-
         <a href="/tags/learn-and-explore" class="btn btn-more">More</a>
       </div>
       
     </div>
     
+    
+    <div class="wrap custom-homepage-wide">
+      <div class="custom-homepage-wide-title">
+      <h2>Help these Wyze Members
+
+
+      </h2>
+      {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Ask a question{{/d-button}}
+
+    </div>
+      <div class="custom-homepage-wide-flex-wrapper">
+      {{#each topicListThree as |topic|}}
+      <div class="custom-homepage-wide-topic">
+
+          <h3><a href="/t/{{topic.slug}}/{{topic.id}}/{{topic.last_read_post_number}}">{{topic.title}}</a>
+          
+
+          </h3>
+          
+          <div class="custom-homepage-wide-topic-info">
+            
+            <a href="/t/{{topic.slug}}/{{topic.id}}/{{topic.last_read_post_number}}"><img src="/user_avatar/{{hostname}}/{{topic.last_poster_username}}/370/617_1.png" class="teammember_img" /></a>
+           
+            <div class="custom-homepage-wide-topic-author">
+              <div class="postAuthor"> <a href="/users/{{topic.last_poster_username}}/activity">{{topic.last_poster_username}}</a></div>
+              <div class="">{{format-date topic.created_at}}</div>
+            </div>
+            
+            <div class="custom-homepage-wide-topic-responses">
+              <span class="likes"><i class="fa fa-heart"></i>{{topic.like_count}}</span>
+              <a href="/t/{{topic.slug}}/{{topic.id}}/{{topic.last_read_post_number}}">
+                <span class="comments"><i class="fa fa-comments"></i>{{topic.posts_count}}</span>
+              </a>
+            </div>
+
+          </div>
+     </div>    
+      {{/each}}
+    </div>
+      
+    </div>
     <div class="wrap">
-      <div class=" homepage-category-boxes">
+      <div class="homepage-category-boxes">
         
         {{#each categoryName as |c|}}
         <a href="/c/{{c.slug}}" class="box">
-            <div class="homepage-category-box">
-              {{#if c.uploaded_logo}}
-              <div class="category-image-wrapper">  
-                <img class="homepage-category-image" src="{{c.uploaded_logo.url}}" />               
-              </div>              
-              {{/if}}
-              
-
-
-              <h2>{{#if c.read_restricted}}<i class="fa fa-lock">&nbsp;</i>{{/if}}{{c.name}}</h2>
-            </div>
-          </a>
+          <div class="homepage-category-box">
+            {{#if c.uploaded_logo}}
+            <div class="category-image-wrapper">  
+              <img class="homepage-category-image" src="{{c.uploaded_logo.url}}" />               
+            </div>              
+            {{/if}}
+            
+            
+            
+            <h2>{{#if c.read_restricted}}<i class="fa fa-lock">&nbsp;</i>{{/if}}{{c.name}}</h2>
+          </div>
+        </a>
         {{/each}}
-      
+        
       </div>
       <div class="homepage-category-expansion">
-      {{#if themeSettings.categories_expandable}}
-      {{#d-button action="showCategories" id="hide-homepage" class="btn btn-primary btn-more-categories" icon="angle-down"}}show more categories{{/d-button}}
-      {{/if}}
+        {{#if themeSettings.categories_expandable}}
+        {{#d-button action="showCategories" id="hide-homepage" class="btn btn-primary btn-more-categories" icon="angle-down"}}show more categories{{/d-button}}
+        {{/if}}
       </div>
     </div>
     

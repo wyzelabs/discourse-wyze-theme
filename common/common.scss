@@ -90,7 +90,7 @@ button,
     border: 1px solid $quaternary;
   }
  >a {
-   border-radius: $border-radius;
+   border-radius: $border-radius; 
    padding: 6px 16px;
     text-transform: uppercase;
     border: 1px solid transparent;
@@ -141,6 +141,12 @@ button,
 
   */
 
+}
+
+// main Wyze nav
+
+.wyze-nav {
+  
 }
 
 // Category list 
@@ -234,10 +240,70 @@ tbody {
 
   }
 
+  .custom-homepage-wide {
+    h2 {  }
+    margin: 3em auto 2em;
+    .custom-homepage-wide-title {
+      display: flex;
+      button {
+        align-self: flex-start;
+        margin-left: auto;
+      }
+    }
+    .custom-homepage-wide-flex-wrapper {
+      display: flex;
+      margin: 1em -1.7% 0;
+
+    }
+    .custom-homepage-wide-topic {
+      flex: 1 1 25%;
+      margin: 0 1.65% 2%;
+      border: 1px solid $primary-low;
+      align-content: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      h3 {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex: 1 1 auto;
+        padding: 1em;
+        font-weight: normal;
+        a {
+          color: $primary; 
+        }
+      }
+    }
+    .custom-homepage-wide-topic-responses {
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .custom-homepage-wide-topic-info {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 1em;
+      background: $primary-very-low;
+      display: flex;
+      i {
+        margin-right: .25em;
+      }
+      img {
+        max-width: 40px;
+        margin-top: .15em;
+        margin-right: .5em;
+        border-radius: 100%;
+        background: $primary-low;
+      }
+    }
+  }
+
   .homepage-category-boxes {
     display: flex;
     flex-wrap: wrap;
-    margin: 3em -1.7% 0;
+    margin: 0 -1.7% 0;
     @media screen and (max-width: 700px) {
       margin-top: 1em;
     }
@@ -284,7 +350,7 @@ tbody {
   
     .homepage-category-box {
       border: 1px solid $primary-low;
-      padding: 2em;
+      padding: 2em 1em;
       text-align: center; 
       box-sizing: border-box;
       height: 100%;
@@ -292,7 +358,6 @@ tbody {
       flex-wrap: wrap;
       align-items: center;
       .category-image-wrapper {
-        max-height: 170px;
         margin: 0 auto 1em auto;
       }
       img {
@@ -303,15 +368,10 @@ tbody {
       }
       h2 {
         color: $primary;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         width: 100%;
         margin: 0;
+        font-size: $font-up-1;
         text-align: center;
-        @media screen and (max-width: 920px) {
-          font-size: $font-up-1;
-        }
       }
     }
   }
