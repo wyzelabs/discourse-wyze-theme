@@ -14,3 +14,17 @@ categories_per_row:
 
 categories_expandable: 
   default: true
+
+homepage_featured_topics_enabled: 
+   default: true
+   
+homepage_featured_topics_header: 
+  default: "Help these Wyze Members"
+
+homepage_featured_topics_order:
+  default: ascending
+  type: enum
+  choices: 
+    - ascending
+    - descending
+

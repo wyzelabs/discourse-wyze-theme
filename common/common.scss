@@ -193,6 +193,7 @@ tbody {
     width: 100%;
     background-size: cover;
     margin-bottom: 3em;
+    padding: 0;
   }
 
   .custom-homepage-columns {
@@ -268,6 +269,13 @@ tbody {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      a {
+        color: $primary;
+        &:hover {
+          color: $tertiary;
+          text-decoration: underline;
+        }
+      }
       h3 {
         display: flex;
         text-align: center;
@@ -279,9 +287,7 @@ tbody {
         font-weight: normal;
         min-height: 75px;
         background: $secondary;
-        a {
-          color: $primary;
-        }
+       
       }
     }
     .custom-homepage-wide-topic-responses {
@@ -311,7 +317,7 @@ tbody {
   .homepage-category-boxes {
     display: flex;
     flex-wrap: wrap;
-    margin: 1em -1.7% 0;
+    margin: 1em -1.7% 3em;
     @media screen and (max-width: 700px) {
       margin-top: 1em;
     }
