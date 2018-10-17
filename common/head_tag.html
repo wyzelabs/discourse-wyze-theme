@@ -104,7 +104,7 @@
             component.set('topicListTwo', topicListTwo);
           });  
           ajax("/latest.json?category_id=1&order=posts&ascending=true").then (function(result){
-            component.set('topicListThree', result.topic_list.topics.slice(0,4));
+            component.set('topicListThree', result.topic_list.topics.slice(0,3));
           });
           ajax("/site.json").then (function(result){
             categoryName = [];
