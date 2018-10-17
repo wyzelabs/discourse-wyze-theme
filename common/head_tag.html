@@ -179,7 +179,7 @@
           
           <div class="custom-homepage-wide-topic-info">
             
-            <a href="/users/{{topic.last_poster_username}}"><img src="/user_avatar/{{hostname}}/{{topic.last_poster_username}}/370/617_1.png" class="teammember_img" /></a>
+            <a href="/users/{{topic.last_poster_username}}"><img src="/user_avatar/{{hostname}}/{{topic.last_poster_username}}/370/50.png" class="teammember_img" /></a>
            
             <div class="custom-homepage-wide-topic-author">
               <div class="postAuthor"> <a href="/users/{{topic.last_poster_username}}">{{topic.last_poster_username}}</a></div>
@@ -202,8 +202,16 @@
   </div>
 
     <div class="wrap">
+        <div class="custom-homepage-category-title">
+
+        <h2>Categories</h2>
+        <div class="homepage-category-expansion">
+            {{#if themeSettings.categories_expandable}}
+            {{#d-button action="showCategories" id="hide-homepage" class="btn btn-primary btn-more-categories"}}show all categories{{/d-button}}
+            {{/if}}
+          </div>
+        </div>
       <div class="homepage-category-boxes">
-        
         {{#each categoryName as |c|}}
         <a href="/c/{{c.slug}}" class="box">
           <div class="homepage-category-box">
@@ -221,11 +229,7 @@
         {{/each}}
         
       </div>
-      <div class="homepage-category-expansion">
-        {{#if themeSettings.categories_expandable}}
-        {{#d-button action="showCategories" id="hide-homepage" class="btn btn-primary btn-more-categories" icon="angle-down"}}show more categories{{/d-button}}
-        {{/if}}
-      </div>
+ 
     </div>
     
     

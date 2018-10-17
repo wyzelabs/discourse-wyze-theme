@@ -246,7 +246,7 @@ tbody {
 
   .custom-homepage-wide {
     padding: 3em 0 2em;
-    margin: 1 em 0;
+    margin: 1em 0;
     h2 {  }
     .custom-homepage-wide-title {
       display: flex;
@@ -274,10 +274,10 @@ tbody {
         justify-content: center;
         align-items: center;
         flex: 1 1 auto;
-        padding: 1em;
+        padding: 1em 2em;
         font-size: $font-up-1;
         font-weight: normal;
-        min-height: 50px;
+        min-height: 75px;
         background: $secondary;
         a {
           color: $primary;
@@ -311,7 +311,7 @@ tbody {
   .homepage-category-boxes {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -1.7% 0;
+    margin: 1em -1.7% 0;
     @media screen and (max-width: 700px) {
       margin-top: 1em;
     }
@@ -366,7 +366,7 @@ tbody {
       flex-wrap: wrap;
       align-items: center;
       .category-image-wrapper {
-        margin: 0 auto 1em auto;
+        margin: 0 auto;
       }
       img {
         border-radius: 100%;
@@ -385,11 +385,10 @@ tbody {
   }
 }
 
-
+.custom-homepage-category-title {
+  display: flex;
+}
 
 .homepage-category-expansion {
-  margin-bottom: 2em;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+ margin-left: auto;
 }
