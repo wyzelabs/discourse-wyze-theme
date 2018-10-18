@@ -8,7 +8,7 @@ html {
   font-size: 15px;
 }
 
-$border-radius: 6px;
+$border-radius: 6px; // Controls all border radii throughout the theme
 
 // Buttons, navs
 
@@ -18,7 +18,7 @@ button,
 .list-controls .select-kit.tags-admin-dropdown button, 
 .list-controls .select-kit.category-notifications-button button, 
 .list-controls .select-kit.tag-notifications-button button,
-#topic-footer-buttons .topic-notifications-button .btn {
+#topic-footer-buttons .topic-notifications-button .btn { // General button styles
   padding: 6px 16px;
   border: 1px solid $primary;
   text-transform: uppercase;
@@ -62,7 +62,7 @@ button,
   opacity: 1;
 }
 
-.d-editor-button-bar .btn {
+.d-editor-button-bar .btn { // Buttons in the post composer 
   border: none !important;
 }
 
@@ -72,18 +72,6 @@ button,
   }
 }
 
-.timeline-container {
-  .btn {
-    border: none;
-    margin-left: -.75em;
-  }
-  .topic-timeline .timeline-scrollarea {
-    border-color: $primary-medium;
-  }
-  .topic-timeline .timeline-handle {
-    background: $primary;
-  }
-}
 
 .nav-pills>li {
   &.active>a {
@@ -116,33 +104,6 @@ button,
 
 .d-header {
   box-shadow: none;
-  /*
-  .contents {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
-    .title {
-      justify-self: center;
-      grid-row-start: 1;
-      grid-column-start: 2;
-    }
-    .panel {
-      justify-self: end;
-      grid-row-start: 1;
-      grid-column-start: 3;
-    }
-    .extra-info-wrapper {
-      grid-row-start: 1;
-      grid-column-start: 1;
-    }
-  }
-  */
-}
-
-// main Wyze nav
-
-.wyze-nav {
-  
 }
 
 // Category list 
@@ -157,42 +118,47 @@ tbody {
   border-width: 1px;
 }
 
-.topic-list-item:nth-child(odd) {
+.topic-list-item:nth-child(odd) { // Tiger-striping on topic list
   background: rgba($primary-very-low, .75);
 }
 
 // Topic 
 
-.topic-map section:nth-of-type(2) {
+.topic-map section:nth-of-type(2) { // Removing extra border
   border: none;
+}
+
+.timeline-container { // Timeline scrollbar in topic
+  .btn {
+    border: none;
+    margin-left: -.75em;
+  }
+  .topic-timeline .timeline-scrollarea {
+    border-color: $primary-medium;
+  }
+  .topic-timeline .timeline-handle {
+    background: $primary;
+  }
 }
 
 // Custom homepage layout
 
 .show-custom-homepage {
-  #main-outlet {
+  #main-outlet { // Remove default padding on custom homepage
     padding-top: 0;
   }
 }
+
 .custom-homepage-wrapper {
   padding-top: 63px;
-
   h2 {
     font-size: 1.75em;
+    @media screen and (max-width: 750px) {
+      font-size: 1.5em;
+    }
   }
 
-  .homepage-banner {
-    background: url($header_background_image);
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 510px;
-    width: 100%;
-    background-size: cover;
-    margin-bottom: 3em;
-    padding: 0;
-  }
-
-  .custom-homepage-columns {
+  .custom-homepage-columns { // Two column section with post feeds
     display: flex;
     @media screen and (max-width: 750px) {
       flex-wrap: wrap;
@@ -222,7 +188,7 @@ tbody {
         margin-left: auto;
       }
     }
-    .topic-list {
+    .topic-list { // Hides extra details in topic feeds
       thead, td.posts-map, td.num.views, td.category {
         display: none;
       }
@@ -238,37 +204,59 @@ tbody {
         width: 80%;
       }
     }
-
   }
 
-  .custom-homepage-wide {
-    padding: 3em 0 2em;
-    margin: 1em 0;
-    .custom-homepage-wide-title {
-      text-transform: capitalize;
-      display: flex;
-      button {
-        align-self: flex-start;
-        margin-left: auto;
+  .custom-homepage-wide { // 3 column section
+    padding: 1.25em 0 .5em;
+    margin: 2.5em 0 2em 0;
+    background: $primary-very-low;
+    @media screen and (max-width: 750px) {
+      margin: 1em 0 2em;
+    }
+    .wrap {
+      padding: 2em 0 2.5em;
+      @media screen and (max-width: 1110px) {
+        padding: 3em 8px;
+      }
+      @media screen and (max-width: 750px) {
+        padding: 1em 8px 2em;
       }
     }
+
     .custom-homepage-wide-flex-wrapper {
       display: flex;
       margin: 1em -1.7% 0;
-
+      @media screen and (max-width: 450px) {
+        flex-wrap: wrap; 
+      }
     }
-    .custom-homepage-wide-topic {
+    .custom-homepage-wide-topic { // Topic container
       flex: 1 1 25%;
       margin: 0 1.65% 2%;
       border: 1px solid $primary-low;
+      background: $secondary;
       align-content: center;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      @media screen and (max-width: 750px) {
+        &:last-of-type {
+          display: none;
+        }
+      }
+      @media screen and (max-width: 450px) {
+        flex: 1 1 100%;
+        margin-bottom: 1em;
+        &:last-of-type {
+          display: none;
+          margin-bottom: 0;
+        }
+      }
       a {
         color: $primary;
       }
       h3 {
+        margin: 0;
         display: flex;
         text-align: center;
         justify-content: center;
@@ -282,19 +270,43 @@ tbody {
        
       }
     }
-    .custom-homepage-wide-topic-responses {
+    .custom-homepage-wide-title { // Headline
+      text-transform: capitalize;
+      display: flex;
+      margin-bottom: 1.5em;
+      button {
+        align-self: flex-start;
+        margin-left: auto;
+      }
+      @media screen and (max-width: 450px) {
+        margin-bottom: .25em;
+        flex-wrap: wrap; 
+        text-align: center;
+        button {
+          display: none;
+        }
+      }
+    }
+    .custom-homepage-wide-topic-responses { // Post count, like count
       margin-left: auto;
       display: flex;
       flex-direction: column;
     }
-    .custom-homepage-wide-topic-info {
+    .custom-homepage-wide-topic-info { // Post count, like count
       box-sizing: border-box;
-      width: 100%;
-      padding: 1em;
-      background: $primary-very-low;
+      width: calc(100% - 2em);
+      padding: 1em 0;
+      margin: 0 1em;
+      background: $secondary;
+      border-top: 1px solid $primary-low;
       display: flex;
+      color: $primary-medium;
       i {
         margin-right: .25em;
+        color: $primary-low-mid;
+      }
+      a {
+        color: $primary-medium;
       }
    
       img {
@@ -306,7 +318,7 @@ tbody {
     }
   }
 
-  .homepage-category-boxes {
+  .homepage-category-boxes { 
     display: flex;
     flex-wrap: wrap;
     margin: 1em -1.7% 3em;
@@ -315,14 +327,28 @@ tbody {
     }
     a.box {
       min-width: 0;
-      &:nth-of-type(n+#{$homepage_categories}) {
+      &:nth-of-type(n+#{$homepage_categories}) { // Setting for numbers of category to show
         display: none;
       }
-      @if $categories_per_row == "3" {
+      @if $categories_per_row == "3" { // 3 columns
         flex: 0 1 30%;
-        margin: 0 1.65% 2%;  
+        margin: 0 1.65% 2%; 
+        @media screen and (max-width: 700px) {
+          flex: 0 1 46.7%;
+          margin: 0 1.65% 2%;  
+          &:nth-of-type(n+3) {
+            display: none;
+          }
+        } 
+        @media screen and (max-width: 375px) {
+          flex: 0 1 100%;
+          margin: 0 0 2%;  
+          img {
+            display: none;
+          }
+        }
       }
-      @if $categories_per_row == "4" {
+      @if $categories_per_row == "4" { // 4 columns
         flex: 0 1 21.7%;
         margin: 0 1.65% 2%;  
         @media screen and (max-width: 820px) {
@@ -351,10 +377,9 @@ tbody {
       &.show {
         display: block !important;
       }
-    
     }
   
-    .homepage-category-box {
+    .homepage-category-box { // Category container
       border: 1px solid $primary-low;
       padding: 1em;
       text-align: center; 
@@ -385,6 +410,13 @@ tbody {
 
 .custom-homepage-category-title {
   display: flex;
+  @media screen and (max-width: 350px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    .homepage-category-expansion {
+      margin: auto;
+    }
+  }
 }
 
 .homepage-category-expansion {
@@ -392,21 +424,30 @@ tbody {
 }
 
 
-// Carousel 
+// Carousel Styles
 
-.jcarousel-wrapper {
+@media screen and (max-width: 1110px) {
+  .wrap.carousel-wrap {
+    padding: 0;
+  }
+}
+
+.jcarousel-wrapper { // required
   margin: 0 auto;
   position: relative;
   margin-bottom: 3em;
+  @media screen and (max-width: 750px) {
+    margin-bottom: 2em;
+  }
 }
 
-.jcarousel {
+.jcarousel { // required
   position: relative;
   overflow: hidden;
   width: 100%;
 }
 
-.jcarousel ul {
+.jcarousel ul { // required
   width: 20000em;
   position: relative;
   list-style: none;
@@ -414,13 +455,17 @@ tbody {
   padding: 0;
 }
 
-.jcarousel li {
+.jcarousel li { // required
   float: left;
 
   iframe, video {
     height: 618px;
     width: 100%;
     max-height: unset;
+    @media screen and (max-width: 1110px) {
+      width: 100%;
+      height: calc(100vw * .556);
+    }
     
   }
 }
@@ -450,7 +495,6 @@ tbody {
   justify-content: center;
   transition: all .25s;
   border-radius: $border-radius;
- 
   &:hover {
     box-shadow: 0 5px 10px rgba(0,0,0,.21);
     background: darken($tertiary, 10%);
