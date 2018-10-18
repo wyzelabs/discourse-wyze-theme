@@ -7,14 +7,14 @@
   },
   "color_schemes": {
     "Wyze": {
-      "primary": "373737",
+      "primary": "1c272b",
       "secondary": "ffffff",
-      "tertiary": "01d0b8",
-      "quaternary": "01d0b8",
+      "tertiary": "00d0b9",
+      "quaternary": "00d0b9",
       "header_background": "1f2221",
       "header_primary": "ffffff",
       "highlight": "D9E1E6",
-      "danger": "EF4F3E",
+      "danger": "d65035",
       "success": "397D3C",
       "love": "E13671"
     }

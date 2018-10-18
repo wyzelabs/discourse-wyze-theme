@@ -8,29 +8,34 @@ html {
   font-size: 15px;
 }
 
-$border-radius: 6px; // Controls all border radii throughout the theme
+.alert.alert-info { // Site alerts
+  background: $primary-very-low;
+  border: 1px solid $primary-low;
+}
+
+$border-radius: 3px; // Controls all border radii throughout the theme
 
 // Buttons, navs
 
 button, 
-.btn,
+.btn, .btn[href],
 .list-controls .select-kit.categories-admin-dropdown button, 
 .list-controls .select-kit.tags-admin-dropdown button, 
 .list-controls .select-kit.category-notifications-button button, 
 .list-controls .select-kit.tag-notifications-button button,
 #topic-footer-buttons .topic-notifications-button .btn { // General button styles
   padding: 6px 16px;
-  border: 1px solid $primary;
+  border: 1px solid $tertiary;
   text-transform: uppercase;
   background: transparent;
-  color: $primary;
+  color: $tertiary;
   border-radius: $border-radius;
   .d-icon {
     opacity: 1;
   }
   .discourse-no-touch & {
     &:hover {
-      background: $primary;
+      background: $tertiary;
       color: $secondary;
     }
   }
@@ -56,6 +61,14 @@ button,
       }
     }
   }
+}
+
+.select-kit.dropdown-select-box.composer-actions .d-icon {
+  border-radius: $border-radius;
+}
+
+.select-kit.dropdown-select-box .select-kit-row .icons .d-icon {
+  border: none;
 }
 
 .btn-flat .d-icon {
@@ -106,6 +119,11 @@ button,
   box-shadow: none;
 }
 
+.user-menu .notifications li,
+.select-kit .select-kit-row.is-highlighted {
+  background: lighten($tertiary, 54%);
+}
+
 // Category list 
 
 .category-list tbody .category h3 {
@@ -116,6 +134,12 @@ button,
 
 tbody {
   border-width: 1px;
+}
+
+.list-controls .combo-box .combo-box-header {
+  border-radius: $border-radius;
+  border-color: $tertiary;
+  color: $tertiary;
 }
 
 .topic-list-item:nth-child(odd) { // Tiger-striping on topic list
@@ -129,15 +153,21 @@ tbody {
 }
 
 .timeline-container { // Timeline scrollbar in topic
-  .btn {
+  .btn.toggle-admin-menu {
     border: none;
     margin-left: -.75em;
   }
   .topic-timeline .timeline-scrollarea {
-    border-color: $primary-medium;
+    border-color: $primary-low;
   }
   .topic-timeline .timeline-handle {
-    background: $primary;
+    background: $tertiary;
+  }
+  .timeline-footer-controls {
+    .btn {
+      border: none;
+      margin-left: -.75em;
+    }
   }
 }
 
