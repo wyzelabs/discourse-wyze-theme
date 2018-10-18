@@ -119,6 +119,13 @@ button,
   box-shadow: none;
 }
 
+.extra-info-wrapper {
+  .badge-wrapper.none 
+  {
+    color: $secondary;
+  }
+}
+
 .user-menu .notifications li,
 .select-kit .select-kit-row.is-highlighted {
   background: lighten($tertiary, 54%);
