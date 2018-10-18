@@ -190,6 +190,7 @@ tbody {
 
   .custom-homepage-columns { // Two column section with post feeds
     display: flex;
+    margin-top: 2em;  
     @media screen and (max-width: 750px) {
       flex-wrap: wrap;
     }
@@ -351,7 +352,7 @@ tbody {
   .homepage-category-boxes { 
     display: flex;
     flex-wrap: wrap;
-    margin: 1em -1.7% 3em;
+    margin: 1em -1.7% 1em;
     @media screen and (max-width: 700px) {
       margin-top: 1em;
     }
@@ -438,6 +439,10 @@ tbody {
   }
 }
 
+.wrap-category-boxes {
+  margin-top: 2em;
+}
+
 .custom-homepage-category-title {
   display: flex;
   @media screen and (max-width: 350px) {
@@ -459,13 +464,13 @@ tbody {
 @media screen and (max-width: 1110px) {
   .wrap.carousel-wrap {
     padding: 0;
+    margin-bottom: 3em;
   }
 }
 
 .jcarousel-wrapper { // required
   margin: 0 auto;
   position: relative;
-  margin-bottom: 3em;
   @media screen and (max-width: 750px) {
     margin-bottom: 2em;
   }
