@@ -1,3 +1,11 @@
+carousel_enabled: 
+  default: true
+
+carousel_videos: 
+  type: list
+  default: "youtube, PhrdEOOpZxY|youtube, Jy5iHYArW9A|youtube, GN2sBZqTSEA"
+  description: Accepts either YouTube or directly hosted MP4s. <br/> Format each option like so&#58; <br/><ul> <li><b>YouTube&#58;</b> youtube, Jy5iHYArW9A <br/> <em>Where Jy5iHYArW9A is the youtube video ID, present in the URL after v= and before any &</em></li> <li><b>MP4&#58;</b> mp4, https://example.com/video.mp4</li></ul>
+
 header_background_image: 
   default: "/uploads/default/original/1X/28aa9fe20c15200b2bdc848417735a4453c178a4.jpeg"
   description: image URL for homepage background
@@ -17,7 +25,7 @@ categories_expandable:
 
 homepage_featured_topics_enabled: 
    default: true
-   
+
 homepage_featured_topics_header: 
   default: "Help these Wyze Members"
 

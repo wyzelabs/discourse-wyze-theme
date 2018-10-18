@@ -135,12 +135,8 @@ button,
       grid-row-start: 1;
       grid-column-start: 1;
     }
-   
-
   }
-
   */
-
 }
 
 // main Wyze nav
@@ -248,8 +244,8 @@ tbody {
   .custom-homepage-wide {
     padding: 3em 0 2em;
     margin: 1em 0;
-    h2 {  }
     .custom-homepage-wide-title {
+      text-transform: capitalize;
       display: flex;
       button {
         align-self: flex-start;
@@ -271,10 +267,6 @@ tbody {
       justify-content: space-between;
       a {
         color: $primary;
-        &:hover {
-          color: $tertiary;
-          text-decoration: underline;
-        }
       }
       h3 {
         display: flex;
@@ -397,4 +389,95 @@ tbody {
 
 .homepage-category-expansion {
  margin-left: auto;
+}
+
+
+// Carousel 
+
+.jcarousel-wrapper {
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 3em;
+}
+
+.jcarousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.jcarousel ul {
+  width: 20000em;
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jcarousel li {
+  float: left;
+
+  iframe, video {
+    height: 618px;
+    width: 100%;
+    max-height: unset;
+    
+  }
+}
+
+.jcarousel img {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+// Carousel Controls 
+
+.jcarousel-control-prev,
+.jcarousel-control-next {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  width: 3em;
+  height: 3em;
+  text-align: center;
+  background: $tertiary;
+  color: $secondary;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  transition: all .25s;
+  border-radius: $border-radius;
+ 
+  &:hover {
+    box-shadow: 0 5px 10px rgba(0,0,0,.21);
+    background: darken($tertiary, 10%);
+  }
+
+  i {
+    color: $secondary;
+  }
+
+}
+
+.jcarousel-control-prev {
+  left: -15px;
+  @media screen and (max-width: 1110px) {
+    left: 0;
+    opacity: .8;
+    border-radius: 0 $border-radius $border-radius 0;
+    width: 2em;
+  }
+}
+
+.jcarousel-control-next {
+  right: -15px;
+  @media screen and (max-width: 1110px) {
+    right: 0;
+    opacity: .8;
+    border-radius: $border-radius 0 0 $border-radius;
+    width: 2em;
+  }
 }
