@@ -190,6 +190,10 @@ tbody {
   padding-top: 63px;
   h2 {
     font-size: 1.75em;
+    &.center-title {
+      width: 100%;
+      text-align: center;
+    }
     @media screen and (max-width: 750px) {
       font-size: 1.5em;
     }
@@ -359,34 +363,16 @@ tbody {
   .homepage-category-boxes { 
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin: 1em -1.7% 1em;
     @media screen and (max-width: 700px) {
       margin-top: 1em;
     }
     a.box {
       min-width: 0;
-      &:nth-of-type(n+#{$homepage_categories}) { // Setting for numbers of category to show
+      &:nth-of-type(n+5) { // Setting for numbers of category to show
         display: none;
       }
-      @if $categories_per_row == "3" { // 3 columns
-        flex: 0 1 30%;
-        margin: 0 1.65% 2%; 
-        @media screen and (max-width: 700px) {
-          flex: 0 1 46.7%;
-          margin: 0 1.65% 2%;  
-          &:nth-of-type(n+3) {
-            display: none;
-          }
-        } 
-        @media screen and (max-width: 375px) {
-          flex: 0 1 100%;
-          margin: 0 0 2%;  
-          img {
-            display: none;
-          }
-        }
-      }
-      @if $categories_per_row == "4" { // 4 columns
         flex: 0 1 21.7%;
         margin: 0 1.65% 2%;  
         @media screen and (max-width: 820px) {
@@ -415,7 +401,7 @@ tbody {
       &.show {
         display: block !important;
       }
-    }
+    
   
     .homepage-category-box { // Category container
       border: 1px solid $primary-low;
@@ -426,6 +412,12 @@ tbody {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      .homepage-category-box-count {
+        width: 100%;
+        text-align: center;
+        color: $primary-medium;
+        i {color: $primary-low-mid;}
+      }
       .category-image-wrapper {
         margin: 0 auto;
       }

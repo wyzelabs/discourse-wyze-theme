@@ -6,29 +6,28 @@ carousel_videos:
   default: "youtube, Jy5iHYArW9A|youtube, PhrdEOOpZxY|youtube, GN2sBZqTSEA"
   description: Accepts either YouTube or directly hosted MP4s. <br/> Format each option like so&#58; <br/><ul> <li><b>YouTube&#58;</b> youtube, Jy5iHYArW9A <br/> <em>Where Jy5iHYArW9A is the youtube video ID, present in the URL after v= and before any &</em></li> <li><b>MP4&#58;</b> mp4, https://example.com/video.mp4</li></ul>
 
-homepage_categories: 
-  default: 4
+feed_one_title:
+  default: Captured on Wyze
 
-categories_per_row:
-  default: 3
-  type: enum
-  choices:
-    - 3
-    - 4
+feed_one_category_slug:
+  default: captured-on-wyze
 
-categories_expandable: 
-  default: true
+feed_two_title:
+  default: Ask the Community
+  
+feed_two_category_slug:
+  default: ask-the-community
 
-homepage_featured_topics_enabled: 
+feed_three_enabled: 
    default: true
 
-homepage_featured_topics_header: 
-  default: "Help these Wyze Members"
+feed_three_title:
+  default: Help these Wyze Members
 
-homepage_featured_topics_button_enabled: 
-  default: true
+feed_thee_category_id:
+  default: 1
 
-homepage_featured_topics_order:
+feed_three_topics_order:
   default: ascending
   type: enum
   choices: 

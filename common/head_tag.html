@@ -2,7 +2,7 @@
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
   
-  if (settings.homepage_featured_topics_order == "ascending") { 
+  if (settings.feed_three_topics_order == "ascending") { 
     var postOrder = "ascending"
   } else {
     var postOrder = "descending"
@@ -12,7 +12,7 @@
     actions: {
       createWyzeMoment(){
         if (Discourse.User.current()){
-          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic", topicCategoryId: 6});
+          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
         }
         else {
           return window.location = Discourse.getURL("/signup");
@@ -20,7 +20,7 @@
       },
       createLearnAndExplore(){
         if (Discourse.User.current()){
-          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic", topicCategoryId: 5});
+          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
         }
         else {
           return window.location = Discourse.getURL("/signup");
@@ -88,7 +88,7 @@
             })(jQuery);
             
             // Homepage feeds 
-            ajax("/c/wyze-moments.json").then (function(result){ // Get posts from category
+            ajax("/c/"+settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
               topicListOne = [];
               var usersOne = result.users;
               result.topic_list.topics.slice(0,5).forEach(function(topic){
@@ -99,7 +99,7 @@
               });
               component.set('topicListOne', topicListOne);
             });
-            ajax("/c/learn-and-explore.json").then (function(result){ // Get posts from category
+            ajax("/c/"+settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
               topicListTwo = [];
               var usersTwo = result.users;
               result.topic_list.topics.slice(0,5).forEach(function(topic){ 
@@ -110,16 +110,21 @@
               });
               component.set('topicListTwo', topicListTwo);
             });  
-            ajax("/latest.json?category_id=1&order=posts&" + postOrder + "=true").then (function(result){ // Get posts from category
+            ajax("/latest.json?category_id="+settings.feed_three_category_id+"&order=posts&" + postOrder + "=true").then (function(result){ // Get posts from category
               component.set('topicListThree', result.topic_list.topics.slice(0,3));
             });
             ajax("/site.json").then (function(result){ // Get list of categories
               categoryName = [];
               result.categories.forEach(function(categories){
-                categoryName.push(categories);
-                console.log()
+                if (categories.id != 1) { // Don't show Uncategorized
+                  categoryName.push(categories);
+                }
               });
               component.set('categoryName', categoryName);
+              if (categoryName.length > 4) {
+                showMoreCategories = true;
+                component.set('showMoreCategories', showMoreCategories);
+              } 
             });  
           }
           else { // Hide homepage
@@ -160,39 +165,30 @@
       <div class="wrap custom-homepage-columns"> <!-- Two column homepage feed -->
         <div class="col col-1">
           <div class="header-wrapper">
-            <h2>Wyze Moments</h2>
+            <h2>{{themeSettings.feed_one_title}}</h2>
             {{#d-button action="createWyzeMoment" class="btn-primary btn"}}Post{{/d-button}}
           </div>
           {{topic-list topics=topicListOne showPosters=true}}
-          {{#each topicListOne as |t|}}
-          <div  
-          class="fb-video" 
-          data-href="{{t.featured_link}}" 
-          data-width="500" 
-          data-allowfullscreen="true"></div>
-          {{/each}}
-          <a href="/c/wyze-moments" class="btn btn-more">More</a>
+          <a href="/c/{{themeSettings.feed_one_category_slug}}" class="btn btn-more">More</a>
         </div>
         <div class="col col-2">
           <div class="header-wrapper">
-            <h2>Learn & Explore</h2>
+            <h2>{{themeSettings.feed_two_title}}</h2>
             {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
           </div>
           {{topic-list topics=topicListTwo showPosters=true}}
-          <a href="/c/learn-and-explore" class="btn btn-more">More</a>
+          <a href="/c/{{themeSettings.feed_two_category_slug}}" class="btn btn-more">More</a>
         </div>
         
       </div>
       
-      {{#if themeSettings.homepage_featured_topics_enabled}}
+      {{#if themeSettings.feed_three_enabled}}
       
       <div class="custom-homepage-wide"> <!-- One column homepage feed -->
         <div class="wrap">
           <div class="custom-homepage-wide-title">
-            <h2>{{themeSettings.homepage_featured_topics_header}}</h2>
-            {{#if themeSettings.homepage_featured_topics_button_enabled}}
-            {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Ask a question{{/d-button}}
-            {{/if}}
+            <h2 class="center-title">{{themeSettings.feed_three_title}}</h2>
+   
           </div>
           <div class="custom-homepage-wide-flex-wrapper">
             {{#each topicListThree as |topic|}}
@@ -227,9 +223,10 @@
       <div class="wrap wrap-category-boxes">
         <div class="custom-homepage-category-title"> <!-- Homepage categories -->
           
-          <h2>Categories</h2>
+          <h2 class="{{unless showMoreCategories 'center-title'}}">Categories</h2>
           <div class="homepage-category-expansion">
-            {{#if themeSettings.categories_expandable}}
+            {{#if showMoreCategories}}
+
             {{#d-button action="showCategories" id="hide-homepage" class="btn btn-primary btn-more-categories"}}show all categories{{/d-button}}
             {{/if}}
           </div>
@@ -244,6 +241,8 @@
               </div>              
               {{/if}}
               <h2>{{#if c.read_restricted}}<i class="fa fa-lock">&nbsp;</i>{{/if}}{{c.name}}</h2>
+              <div class="homepage-category-box-count"><i class="fa fa-comments"></i> {{c.topic_count}}</div>
+
             </div>
           </a>
           {{/each}}
