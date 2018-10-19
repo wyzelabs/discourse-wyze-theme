@@ -8,27 +8,35 @@ carousel_videos:
   
 feed_one_two_enabled:
   default: true
+  description: disabling this hides the two column homepage feed
 
 feed_one_title:
   default: Captured on Wyze
+  description: custom title
 
 feed_one_category_slug:
   default: captured-on-wyze
+  description: source of feed content, from the category url following /c/
 
 feed_two_title:
   default: Ask the Community
-  
+  description: custom title
+
 feed_two_category_slug:
   default: ask-the-community
+  description: source of feed content, from the category url following /c/
 
 feed_three_enabled: 
    default: true
+   description: disabling this hides the 3-column feed
 
 feed_three_title:
   default: Help these Wyze Members
+  description: custom title
 
 feed_thee_category_id:
   default: 1
+  description: ID of category that feeds this feature
 
 feed_three_topics_order:
   default: ascending
