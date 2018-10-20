@@ -442,6 +442,61 @@ tbody {
   }
 }
 
+// Custom homepage search 
+
+.custom-homepage-search {
+  .search-menu input[type="text"] {
+    margin: 0.5em 0;
+    width: 100%
+  }
+  padding: 2em 8px;
+  position: relative;
+  h2, p {
+    text-align: center;
+  }
+  .search-menu {
+    position: relative;
+  }
+  >div {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  .search-input,
+  .search-context,
+  .results {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .search-context {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 45px;
+    right: 1em;
+  }
+
+  .results {
+    box-sizing: border-box;
+    background: $secondary;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    position: absolute;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    top: 39px;
+    right: 0;
+    padding: 2em 1em 1em 1em;
+    ul,ol {
+      list-style-type: none;
+      margin: 0;
+    }
+  }
+
+
+}
+
 .wrap-category-boxes {
   margin-top: 2em;
 }
@@ -563,3 +618,5 @@ tbody {
     width: 2em;
   }
 }
+
+
