@@ -399,10 +399,11 @@ tbody {
           display: none;
         }
       }
+      &.show {
+        display: block !important;
+      }
     }
-    &.show {
-      display: block !important;
-    }
+    
     
     
     .homepage-category-box { // Category container
