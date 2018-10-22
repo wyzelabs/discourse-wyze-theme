@@ -8,7 +8,7 @@ html {
   font-size: 15px;
 }
 
-.alert.alert-info { // Site alerts
+.alert.alert-info { // Sitewide alerts
   background: $primary-very-low;
   border: 1px solid $primary-low;
 }
@@ -17,13 +17,13 @@ $border-radius: 3px; // Controls all border radii throughout the theme
 
 // Buttons, navs
 
-button, 
+button, // General button styles
 .btn, .btn[href],
 .list-controls .select-kit.categories-admin-dropdown button, 
 .list-controls .select-kit.tags-admin-dropdown button, 
 .list-controls .select-kit.category-notifications-button button, 
 .list-controls .select-kit.tag-notifications-button button,
-#topic-footer-buttons .topic-notifications-button .btn { // General button styles
+#topic-footer-buttons .topic-notifications-button .btn { 
   padding: 6px 16px;
   border: 1px solid $tertiary;
   text-transform: uppercase;
@@ -39,7 +39,7 @@ button,
       color: $secondary;
     }
   }
-  &.btn-primary {
+  &.btn-primary { // Important buttons
     border-color: $tertiary;
     background: $tertiary;
     color: $secondary;
@@ -50,7 +50,7 @@ button,
       }
     }
   }
-  &.btn-danger {
+  &.btn-danger { // Destructive buttons
     background: $danger;
     border-color: $danger;
     color: $secondary;
@@ -63,16 +63,16 @@ button,
   }
 }
 
-.select-kit.dropdown-select-box.composer-actions .d-icon {
+.btn-flat .d-icon {
+  opacity: 1;
+}
+
+.select-kit.dropdown-select-box.composer-actions .d-icon { // Composer reply-type dropdown
   border-radius: $border-radius;
 }
 
 .select-kit.dropdown-select-box .select-kit-row .icons .d-icon {
   border: none;
-}
-
-.btn-flat .d-icon {
-  opacity: 1;
 }
 
 .d-editor-button-bar .btn { // Buttons in the post composer 
@@ -85,14 +85,13 @@ button,
   }
 }
 
-
-.nav-pills>li {
+.nav-pills>li { // e.g. "latest | top | new | unread" nav
   &.active>a {
     border: 1px solid $quaternary;
   }
- >a {
-   border-radius: $border-radius; 
-   padding: 6px 16px;
+  >a {
+    border-radius: $border-radius; 
+    padding: 6px 16px;
     text-transform: uppercase;
     border: 1px solid transparent;
     &:hover {
@@ -100,8 +99,7 @@ button,
       border: 1px solid $quaternary;
       color: $quaternary;
     }
- }
-
+  }
 }
 
 .list-controls .btn {
@@ -113,7 +111,7 @@ button,
   padding: 3px 6px 4px 10px;
 }
 
-// Header 
+// Discourse Header 
 
 .d-header {
   box-shadow: none;
@@ -123,7 +121,7 @@ button,
   }
 }
 
-.extra-info-wrapper {
+.extra-info-wrapper { // When topic title docks
   .badge-wrapper.none 
   {
     color: $secondary;
@@ -202,7 +200,7 @@ tbody {
       font-size: 1.5em;
     }
   }
-
+  
   .custom-homepage-columns { // Two column section with post feeds
     display: flex;
     margin-top: 2em;  
@@ -217,9 +215,9 @@ tbody {
     }
     .col-1 {
       margin-right: 1.5em;
-       + .col-2 {
-      margin-left: 1.5em;
-       }
+      + .col-2 {
+        margin-left: 1.5em;
+      }
     }
     @media screen and (max-width: 750px) {
       .col-1, .col-2 {
@@ -251,7 +249,7 @@ tbody {
       }
     }
   }
-
+  
   .custom-homepage-wide { // 3 column section
     padding: 1.25em 0 .5em;
     margin: 2.5em 0 2em 0;
@@ -268,7 +266,7 @@ tbody {
         padding: 1em 8px 2em;
       }
     }
-
+    
     .custom-homepage-wide-flex-wrapper {
       display: flex;
       margin: 1em -1.7% 0;
@@ -313,7 +311,7 @@ tbody {
         font-weight: normal;
         min-height: 75px;
         background: $secondary;
-       
+        
       }
     }
     .custom-homepage-wide-title { // Headline
@@ -354,7 +352,7 @@ tbody {
       a {
         color: $primary-medium;
       }
-   
+      
       img {
         max-width: 40px;
         margin-top: .15em;
@@ -363,7 +361,7 @@ tbody {
       }
     }
   }
-
+  
   .homepage-category-boxes { 
     display: flex;
     flex-wrap: wrap;
@@ -377,36 +375,36 @@ tbody {
       &:nth-of-type(n+5) { // Setting for numbers of category to show
         display: none;
       }
-        flex: 0 1 21.7%;
+      flex: 0 1 21.7%;
+      margin: 0 1.65% 2%;  
+      @media screen and (max-width: 820px) {
+        flex: 0 1 30%;
         margin: 0 1.65% 2%;  
-        @media screen and (max-width: 820px) {
-          flex: 0 1 30%;
-          margin: 0 1.65% 2%;  
-          &:nth-of-type(n+4) {
-            display: none;
-          }
-        }
-        @media screen and (max-width: 700px) {
-          flex: 0 1 46.7%;
-          margin: 0 1.65% 2%;  
-          &:nth-of-type(n+3) {
-            display: none;
-          }
-
-        }
-        @media screen and (max-width: 375px) {
-          flex: 0 1 100%;
-          margin: 0 0 2%;  
-          img {
-            display: none;
-          }
+        &:nth-of-type(n+4) {
+          display: none;
         }
       }
-      &.show {
-        display: block !important;
+      @media screen and (max-width: 700px) {
+        flex: 0 1 46.7%;
+        margin: 0 1.65% 2%;  
+        &:nth-of-type(n+3) {
+          display: none;
+        }
+        
       }
+      @media screen and (max-width: 375px) {
+        flex: 0 1 100%;
+        margin: 0 0 2%;  
+        img {
+          display: none;
+        }
+      }
+    }
+    &.show {
+      display: block !important;
+    }
     
-  
+    
     .homepage-category-box { // Category container
       border: 1px solid $primary-low;
       padding: 1em;
@@ -445,14 +443,27 @@ tbody {
 // Custom homepage search 
 
 .custom-homepage-search {
+  padding: 3em 8px 4em;
+  margin: 1em auto 3em auto;
+  position: relative;
+  border-bottom: 1px solid $primary-low;
+  @media screen and (max-width: 700px) {
+    padding: 1em 8px 2em 8px;
+    margin-top: .5em;
+  }
   .search-menu input[type="text"] {
     margin: 0.5em 0;
-    width: 100%
+    width: 100%;
   }
-  padding: 2em 8px;
-  position: relative;
-  h2, p {
+  
+  h1, p {
     text-align: center;
+  }
+  h1 {
+    font-size: $font-up-6;
+    @media screen and (max-width: 600px) {
+      font-size: $font-up-4;
+    }
   }
   .search-menu {
     position: relative;
@@ -467,15 +478,14 @@ tbody {
     margin: 0 auto;
     max-width: 600px;
   }
-
+  
   .search-context {
     position: absolute;
     z-index: 10;
     right: 0;
     top: 45px;
-    right: 1em;
   }
-
+  
   .results {
     box-sizing: border-box;
     background: $secondary;
@@ -493,8 +503,8 @@ tbody {
       margin: 0;
     }
   }
-
-
+  
+  
 }
 
 .wrap-category-boxes {
@@ -513,7 +523,7 @@ tbody {
 }
 
 .homepage-category-expansion {
- margin-left: auto;
+  margin-left: auto;
 }
 
 
@@ -528,10 +538,14 @@ tbody {
 
 .jcarousel-wrapper { // required
   margin: 0 auto;
+  background: $primary-very-low;
+  padding: 3em 0;
   position: relative;
   @media screen and (max-width: 750px) {
     margin-bottom: 2em;
+    padding: 0;
   }
+  
 }
 
 .jcarousel { // required
@@ -550,16 +564,24 @@ tbody {
 
 .jcarousel li { // required
   float: left;
-
+  
   iframe, video {
-    height: 618px;
-    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 950px;
+    height: 402px;
+    text-align: center;
     max-height: unset;
     @media screen and (max-width: 1110px) {
+      height: calc(100vw * .32);
+      min-height: 350px;
+    }
+    @media screen and (max-width: 600px) {
       width: 100%;
+      min-height: unset;
       height: calc(100vw * .556);
     }
-    
   }
 }
 
@@ -579,6 +601,7 @@ tbody {
   margin-top: -25px;
   width: 3em;
   height: 3em;
+  font-size: 1.25em;
   text-align: center;
   background: $tertiary;
   color: $secondary;
@@ -587,36 +610,30 @@ tbody {
   align-items: center;
   justify-content: center;
   transition: all .25s;
-  border-radius: $border-radius;
+  @media screen and (max-width: 600px) {
+    font-size: .875em;
+  }
   &:hover {
     box-shadow: 0 5px 10px rgba(0,0,0,.21);
     background: darken($tertiary, 10%);
   }
-
+  
   i {
     color: $secondary;
   }
-
+  
 }
 
 .jcarousel-control-prev {
   left: -15px;
-  @media screen and (max-width: 1110px) {
-    left: 0;
-    opacity: .8;
-    border-radius: 0 $border-radius $border-radius 0;
-    width: 2em;
-  }
+  padding-left: 5px;
+  border-radius: 0 $border-radius $border-radius 0;
 }
 
 .jcarousel-control-next {
   right: -15px;
-  @media screen and (max-width: 1110px) {
-    right: 0;
-    opacity: .8;
-    border-radius: $border-radius 0 0 $border-radius;
-    width: 2em;
-  }
+  padding-right: 5px;
+  border-radius: $border-radius 0 0 $border-radius;
 }
 
 

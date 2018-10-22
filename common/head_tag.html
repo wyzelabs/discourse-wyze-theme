@@ -1,3 +1,158 @@
+<script type="text/discourse-plugin" version="0.8">
+  const ajax = require('discourse/lib/ajax').ajax;
+  const Topic = require('discourse/models/topic').default;
+  
+  if (settings.feed_three_topics_order == "ascending") { 
+    var postOrder = "ascending"
+  } else {
+    var postOrder = "descending"
+  };
+  
+  api.registerConnectorClass('below-site-header', 'custom-homepage', {
+    actions: {
+      createWyzeMoment(){
+        if (Discourse.User.current()){
+          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
+        }
+        else {
+          return window.location = Discourse.getURL("/signup");
+        }
+      },
+      createLearnAndExplore(){
+        if (Discourse.User.current()){
+          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
+        }
+        else {
+          return window.location = Discourse.getURL("/signup");
+        }
+      },
+      showCategories(){
+        $('.box').toggleClass('show');
+        $('.btn-more-categories').hide();
+      },
+    }, 
+    setupComponent(args, component) {
+      component.set('hostname', window.location.hostname);
+      
+      api.onPageChange((url, title) => {
+        if (url == "/"){ 
+          $('html').addClass('show-custom-homepage'); // Show homepage
+          component.set('displayCustomHomepage', true);
+          
+          // This grabs the videos for the carousel from the settings 
+          api.createWidget('carousel_videos', { 
+            tagName: 'span', 
+            html(attrs, state) {
+              let carousel_videos = {};
+              
+              settings.carousel_videos.split("|").map(i => {
+                var seg = $.map(i.split(","), $.trim),
+                type = seg[0],
+                id = seg[1]
+                
+                if (type == "youtube") {
+                  $('.carousel-content').append('<li><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/' + id +'" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></li>')
+                } else if (type == "mp4") {
+                  $('.carousel-content').append('<li><video controls><source src="' + id + '" type="video/mp4"></video></li>')
+                  } 
+                });
+              }
+            });
+            
+            // Setup jcarousel 
+            (function($) {
+              $(function() {
+                var jcarousel = $('.jcarousel');
+                
+                jcarousel
+                .on('jcarousel:reload jcarousel:create', function () {
+                  var carousel = $(this),
+                  width = carousel.innerWidth();
+
+                    if (width >= 2000) {
+                      width = width / 3;
+                  } else if (width >= 1480) {
+                      width = width / 2;
+                    } else if (width >= 1050) {
+                      width = width / 1.75;
+                    } else if (width >= 950) {
+                      width = width / 1.5;
+                    } else if (width >= 770) {
+                      width = width / 1.35;
+                  }  else if (width >= 600) {
+                      width = width / 1;
+                  }
+
+                  $(this).jcarousel('scroll', 1, false);
+                  carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+                })
+                .jcarousel({
+                  wrap: 'circular',
+                  center: true
+
+                });
+                
+                $('.jcarousel-control-prev')
+                .jcarouselControl({
+                  target: '-=1'
+                });
+                
+                $('.jcarousel-control-next')
+                .jcarouselControl({
+                  target: '+=1'
+                });
+              });
+            })(jQuery);
+            
+            // Homepage feeds 
+            ajax("/c/"+settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
+              topicListOne = [];
+              var usersOne = result.users;
+              result.topic_list.topics.slice(0,5).forEach(function(topic){
+                topic.posters.forEach(function(poster){
+                  poster.user = $.grep(usersOne, function(e){ return e.id == poster.user_id; })[0];
+                });
+                topicListOne.push(Topic.create(topic));
+              });
+              component.set('topicListOne', topicListOne);
+            });
+            ajax("/c/"+settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
+              topicListTwo = [];
+              var usersTwo = result.users;
+              result.topic_list.topics.slice(0,5).forEach(function(topic){ 
+                topic.posters.forEach(function(poster){
+                  poster.user = $.grep(usersTwo, function(e){ return e.id == poster.user_id; })[0];
+                });
+                topicListTwo.push(Topic.create(topic));
+              });
+              component.set('topicListTwo', topicListTwo);
+            });  
+            ajax("/latest.json?category_id="+settings.feed_three_category_id+"&order=posts&" + postOrder + "=true").then (function(result){ // Get posts from category
+              component.set('topicListThree', result.topic_list.topics.slice(0,3));
+            });
+            ajax("/site.json").then (function(result){ // Get list of categories
+              categoryName = [];
+              result.categories.forEach(function(categories){
+                if (categories.id != 1) { // Don't show Uncategorized
+                categoryName.push(categories);
+              }
+            });
+            component.set('categoryName', categoryName);
+            if (categoryName.length > 4) {
+              showMoreCategories = true;
+              component.set('showMoreCategories', showMoreCategories);
+            } 
+          });  
+        }
+        else { // Hide homepage
+          $('html').removeClass('show-custom-homepage');
+          component.set('displayCustomHomepage', false);
+        }
+      });
+    }
+  });
+</script>
+
 <script type="text/discourse-plugin" version='0.8'> // Simplified version of header search theme component
   const searchMenuWidget = api.container.factoryFor('widget:search-menu');
   const corePanelContents = searchMenuWidget.class.prototype['panelContents'];
@@ -83,155 +238,17 @@
 </script>
 
 
-
-<script type="text/discourse-plugin" version="0.6">
-  const ajax = require('discourse/lib/ajax').ajax;
-  const Topic = require('discourse/models/topic').default;
-  
-  if (settings.feed_three_topics_order == "ascending") { 
-    var postOrder = "ascending"
-  } else {
-    var postOrder = "descending"
-  };
-  
-  api.registerConnectorClass('below-site-header', 'custom-homepage', {
-    actions: {
-      createWyzeMoment(){
-        if (Discourse.User.current()){
-          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
-        }
-        else {
-          return window.location = Discourse.getURL("/signup");
-        }
-      },
-      createLearnAndExplore(){
-        if (Discourse.User.current()){
-          api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
-        }
-        else {
-          return window.location = Discourse.getURL("/signup");
-        }
-      },
-      showCategories(){
-        $('.box').toggleClass('show');
-        $('.btn-more-categories').hide();
-      },
-    }, 
-    setupComponent(args, component) {
-      component.set('hostname', window.location.hostname);
-      
-      api.onPageChange((url, title) => {
-        if (url == "/"){ 
-          $('html').addClass('show-custom-homepage'); // Show homepage
-          component.set('displayCustomHomepage', true);
-          
-          // This grabs the videos for the carousel from the settings 
-          api.createWidget('carousel_videos', { 
-            tagName: 'span', 
-            html(attrs, state) {
-              let carousel_videos = {};
-              
-              settings.carousel_videos.split("|").map(i => {
-                var seg = $.map(i.split(","), $.trim),
-                type = seg[0],
-                id = seg[1]
-                
-                if (type == "youtube") {
-                  $('.carousel-content').append('<li><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/' + id +'" frameborder="0" allow="encrypted-media" allowfullscreen></iframe></li>')
-                } else if (type == "mp4") {
-                  $('.carousel-content').append('<li><video controls><source src="' + id + '" type="video/mp4"></video></li>')
-                  } 
-                });
-              }
-            });
-            
-            // Setup jcarousel 
-            (function($) {
-              $(function() {
-                var jcarousel = $('.jcarousel');
-                
-                jcarousel
-                .on('jcarousel:reload jcarousel:create', function () {
-                  var carousel = $(this),
-                  width = carousel.innerWidth();
-                  carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
-                })
-                .jcarousel({
-                  wrap: 'circular'
-                });
-                
-                $('.jcarousel-control-prev')
-                .jcarouselControl({
-                  target: '-=1'
-                });
-                
-                $('.jcarousel-control-next')
-                .jcarouselControl({
-                  target: '+=1'
-                });
-              });
-            })(jQuery);
-            
-            // Homepage feeds 
-            ajax("/c/"+settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
-              topicListOne = [];
-              var usersOne = result.users;
-              result.topic_list.topics.slice(0,5).forEach(function(topic){
-                topic.posters.forEach(function(poster){
-                  poster.user = $.grep(usersOne, function(e){ return e.id == poster.user_id; })[0];
-                });
-                topicListOne.push(Topic.create(topic));
-              });
-              component.set('topicListOne', topicListOne);
-            });
-            ajax("/c/"+settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
-              topicListTwo = [];
-              var usersTwo = result.users;
-              result.topic_list.topics.slice(0,5).forEach(function(topic){ 
-                topic.posters.forEach(function(poster){
-                  poster.user = $.grep(usersTwo, function(e){ return e.id == poster.user_id; })[0];
-                });
-                topicListTwo.push(Topic.create(topic));
-              });
-              component.set('topicListTwo', topicListTwo);
-            });  
-            ajax("/latest.json?category_id="+settings.feed_three_category_id+"&order=posts&" + postOrder + "=true").then (function(result){ // Get posts from category
-              component.set('topicListThree', result.topic_list.topics.slice(0,3));
-            });
-            ajax("/site.json").then (function(result){ // Get list of categories
-              categoryName = [];
-              result.categories.forEach(function(categories){
-                if (categories.id != 1) { // Don't show Uncategorized
-                categoryName.push(categories);
-              }
-            });
-            component.set('categoryName', categoryName);
-            if (categoryName.length > 4) {
-              showMoreCategories = true;
-              component.set('showMoreCategories', showMoreCategories);
-            } 
-          });  
-        }
-        else { // Hide homepage
-          $('html').removeClass('show-custom-homepage');
-          component.set('displayCustomHomepage', false);
-        }
-      });
-    }
-  });
-</script>
-
-
 <script type='text/x-handlebars' data-template-name='/connectors/below-site-header/custom-homepage'>
   
   {{#if displayCustomHomepage}}
   
   {{mount-widget widget="carousel_videos"}} <!-- Videos from settings -->
   
+  
   <div class="custom-homepage-wrapper"> 
     {{#if themeSettings.carousel_enabled}}
     {{#if themeSettings.carousel_videos}}
-    <div class="wrap carousel-wrap">   
+    <div class="carousel-wrap">   
       <div id="jcarousel" class="wrapper"> <!-- Carousel wrapper -->
         <div class="jcarousel-wrapper">
           <div class="jcarousel">
@@ -246,15 +263,19 @@
     {{/if}}
     {{/if}}
     
+
+    {{#if themeSettings.homepage_search_enabled}}
+
     <div class="wrap custom-homepage-search">
-      <h2>Welcome to Wyze Communities</h2>
+      <h1>Welcome to Wyze Communities</h1>
       
       <p>Find answers, ask questions, and connect with your fellow community of Wyze users.</p>
       
       {{mount-widget widget="search-widget"}}
       
     </div>
-    
+
+    {{/if}}
     
     
     

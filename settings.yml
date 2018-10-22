@@ -1,14 +1,19 @@
 carousel_enabled: 
   default: true
+  description: disabling this hides the homepage video carousel
 
 carousel_videos: 
   type: list
   default: "youtube, Jy5iHYArW9A|youtube, PhrdEOOpZxY|youtube, GN2sBZqTSEA"
   description: Accepts either YouTube or directly hosted MP4s. <br/> Format each option like so&#58; <br/><ul> <li><b>YouTube&#58;</b> youtube, Jy5iHYArW9A <br/> <em>Where Jy5iHYArW9A is the youtube video ID, present in the URL after v= and before any &</em></li> <li><b>MP4&#58;</b> mp4, https://example.com/video.mp4</li></ul>
   
+homepage_search_enabled: 
+  default: true
+  description: disabling this hides the homepage search callout
+
 feed_one_two_enabled:
   default: true
-  description: disabling this hides the two column homepage feed
+  description: disabling this hides the 2-column homepage feed
 
 feed_one_title:
   default: Captured on Wyze
@@ -28,7 +33,7 @@ feed_two_category_slug:
 
 feed_three_enabled: 
    default: true
-   description: disabling this hides the 3-column feed
+   description: disabling this hides the 3-column homepage feed
 
 feed_three_title:
   default: Help these Wyze Members
