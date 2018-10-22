@@ -190,6 +190,9 @@ tbody {
 
 .custom-homepage-wrapper {
   padding-top: 63px;
+  .mobile-view & {
+    padding-top: 58px;
+  }
   h2 {
     font-size: 1.75em;
     &.center-title {
@@ -497,6 +500,12 @@ tbody {
     box-shadow: 0 5px 10px rgba(0,0,0,.15);
     position: absolute;
     width: 600px;
+    @media screen and (max-width: 599px) {
+      width: 320px;
+      .badge-wrapper {
+        display: none;
+      }
+    }
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -507,6 +516,7 @@ tbody {
       list-style-type: none;
       margin: 0;
     }
+
   }
   
   

@@ -228,7 +228,7 @@
     const searchWidget = helper.widget,
     appController = helper.register.lookup('controller:application'),
     searchMenuVisible = searchWidget.state.searchVisible;
-    if (!searchMenuVisible && !searchWidget.attrs.topic && !helper.widget.site.mobileView) {
+    if (!searchMenuVisible && !searchWidget.attrs.topic) {
       return helper.attach('search-menu', {
         contextEnabled: searchWidget.state.contextEnabled,
         formFactor: 'widget'
