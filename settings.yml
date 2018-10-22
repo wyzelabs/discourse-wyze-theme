@@ -11,6 +11,9 @@ homepage_search_enabled:
   default: true
   description: disabling this hides the homepage search callout
 
+homepage_search_background: 
+  default: "#ffffff"
+
 feed_one_two_enabled:
   default: true
   description: disabling this hides the 2-column homepage feed
