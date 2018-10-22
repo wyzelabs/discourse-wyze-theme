@@ -501,7 +501,7 @@ tbody {
     position: absolute;
     width: 600px;
     @media screen and (max-width: 599px) {
-      width: 320px;
+      width: 100%;
       .badge-wrapper {
         display: none;
       }
