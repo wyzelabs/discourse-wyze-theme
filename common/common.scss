@@ -9,15 +9,15 @@
 }
 
 @font-face {
-  font-family: neutrif-bold;
-  src: url($neutrif-bold);
-  font-weight: bold;
-}
-
-@font-face {
   font-family: neutrif-regular-italic;
   src: url($neutrif-regular-italic);
   font-style: italic;
+}
+
+@font-face {
+  font-family: neutrif-bold;
+  src: url($neutrif-bold);
+  font-weight: bold;
 }
 
 @font-face {
@@ -32,7 +32,7 @@
 
 html {
   font-family: "neutrif-regular", sans-serif;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .alert.alert-info { // Sitewide alerts
