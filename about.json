@@ -3,7 +3,6 @@
   "about_url": "URL",
   "license_url": "URL",
   "assets": {
-    "background": "assets/wyze-banner-placeholder.jpg",
     "neutrif-regular": "assets/neutrif-pro.woff",
     "neutrif-regular-italic": "assets/neutrif-pro-regular-italic.woff",
     "neutrif-bold": "assets/neutrif-pro-bold.woff",
