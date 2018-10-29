@@ -588,7 +588,7 @@ tbody {
 .jcarousel-wrapper { // required
   margin: 0 auto;
   background: $primary-very-low;
-  padding: 3em 0;
+  padding: 3em 0 2em;
   position: relative;
   @media screen and (max-width: 750px) {
     margin-bottom: 2em;
@@ -617,19 +617,18 @@ tbody {
   iframe, video {
     display: flex;
     margin: 0 auto;
-    width: 90%;
-    max-width: 950px;
-    height: 402px;
+    width: 463px;
+    height: 260px;
     text-align: center;
     max-height: unset;
     @media screen and (max-width: 1110px) {
-      height: calc(100vw * .32);
-      min-height: 350px;
+      height: calc(100vw * .25);
+      min-height: 260px;
     }
     @media screen and (max-width: 600px) {
       width: 100%;
       min-height: unset;
-      height: calc(100vw * .556);
+      height: calc(100vw * .57);
     }
   }
 }
