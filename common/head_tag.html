@@ -1,3 +1,10 @@
+<script> 
+  var TopicListComponent = require('discourse/components/topic-list').default;
+  TopicListComponent.reopen({
+      showLikes: true
+  });
+</script>
+
 <script type="text/discourse-plugin" version="0.8">
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
