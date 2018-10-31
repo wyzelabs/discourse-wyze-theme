@@ -664,6 +664,12 @@ tbody {
       list-style-type: none;
       margin: 0;
     }
+    li.item {
+      margin-bottom: 10px;
+      a {
+        color: $primary;
+      }
+    }
   } 
 }
 
