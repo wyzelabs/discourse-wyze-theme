@@ -265,13 +265,6 @@ button, // General button styles
   }
 }
 
-.extra-info-wrapper { // When topic title docks
-  .badge-wrapper.none 
-  {
-    color: $secondary;
-  }
-}
-
 .user-menu .notifications li,
 .select-kit .select-kit-row.is-highlighted {
   background: lighten($tertiary, 54%);
