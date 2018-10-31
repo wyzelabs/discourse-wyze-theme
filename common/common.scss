@@ -648,6 +648,7 @@ tbody {
     box-shadow: 0 5px 10px rgba(0,0,0,.15);
     position: absolute;
     width: 600px;
+    z-index: 9;
     @media screen and (max-width: 599px) {
       width: 100%;
       .badge-wrapper {
