@@ -6,7 +6,9 @@
     "neutrif-regular": "assets/neutrif-pro.woff",
     "neutrif-regular-italic": "assets/neutrif-pro-regular-italic.woff",
     "neutrif-bold": "assets/neutrif-pro-bold.woff",
-    "neutrif-bold-italic": "assets/neutrif-pro-bold-italic.woff"
+    "neutrif-bold-italic": "assets/neutrif-pro-bold-italic.woff",
+    "logo": "assets/logo-white.png"
+
   },
   "color_schemes": {
     "Wyze": {
@@ -14,8 +16,8 @@
       "secondary": "ffffff",
       "tertiary": "00d0b9",
       "quaternary": "00d0b9",
-      "header_background": "002632",
-      "header_primary": "ffffff",
+      "header_background": "ffffff",
+      "header_primary": "1c272b",
       "highlight": "D9E1E6",
       "danger": "d65035",
       "success": "397D3C",

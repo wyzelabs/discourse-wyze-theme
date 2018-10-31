@@ -1,3 +1,4 @@
+<!-- Shows like column -->
 <script> 
   var TopicListComponent = require('discourse/components/topic-list').default;
   TopicListComponent.reopen({
@@ -5,6 +6,7 @@
   });
 </script>
 
+<!-- Custom homepage logic -->
 <script type="text/discourse-plugin" version="0.8">
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
@@ -160,6 +162,9 @@
   });
 </script>
 
+
+<!-- Custom Search on homepage -->
+
 <script type="text/discourse-plugin" version='0.8'> // Simplified version of header search theme component
   const searchMenuWidget = api.container.factoryFor('widget:search-menu');
   const corePanelContents = searchMenuWidget.class.prototype['panelContents'];
@@ -244,6 +249,7 @@
   });
 </script>
 
+<!-- Custom homepage template -->
 
 <script type='text/x-handlebars' data-template-name='/connectors/below-site-header/custom-homepage'>
   
@@ -381,9 +387,6 @@
   </div> 
   {{/if}}
 </script>
-
-
-
 
 <script type="text/javascript"> 
   
