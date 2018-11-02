@@ -2,7 +2,7 @@
 <script> 
   var TopicListComponent = require('discourse/components/topic-list').default;
   TopicListComponent.reopen({
-      showLikes: true
+    showLikes: true
   });
 </script>
 
@@ -77,28 +77,28 @@
                 .on('jcarousel:reload jcarousel:create', function () {
                   var carousel = $(this),
                   width = carousel.innerWidth();
-
-                    if (width >= 2000) {
-                      width = width / 4.5;
+                  
+                  if (width >= 2000) {
+                    width = width / 4.5;
                   } else if (width >= 1480) {
-                      width = width / 3;
-                    } else if (width >= 1110) {
-                      width = width / 2.5;
-                    } else if (width >= 950) {
-                      width = width / 2;
-                    } else if (width >= 770) {
-                      width = width / 1.75;
+                    width = width / 3;
+                  } else if (width >= 1110) {
+                    width = width / 2.5;
+                  } else if (width >= 950) {
+                    width = width / 2;
+                  } else if (width >= 770) {
+                    width = width / 1.75;
                   }  else if (width >= 600) {
-                      width = width / 1;
+                    width = width / 1;
                   }
-
+                  
                   $(this).jcarousel('scroll', 1, false);
                   carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
                 })
                 .jcarousel({
                   wrap: 'circular',
                   center: true
-
+                  
                 });
                 
                 $('.jcarousel-control-prev')
@@ -114,31 +114,42 @@
             })(jQuery);
             
             // Homepage feeds 
-            ajax("/c/"+settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
-              topicListOne = [];
-              var usersOne = result.users;
-              result.topic_list.topics.slice(0,5).forEach(function(topic){
-                topic.posters.forEach(function(poster){
-                  poster.user = $.grep(usersOne, function(e){ return e.id == poster.user_id; })[0];
+            
+            $(function() {
+              if (settings.feed_one_two_enabled) {  
+                ajax("/c/"+settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
+                  topicListOne = [];
+                  var usersOne = result.users;
+                  result.topic_list.topics.slice(0,5).forEach(function(topic){
+                    topic.posters.forEach(function(poster){
+                      poster.user = $.grep(usersOne, function(e){ return e.id == poster.user_id; })[0];
+                    });
+                    topicListOne.push(Topic.create(topic));
+                  });
+                  component.set('topicListOne', topicListOne);
                 });
-                topicListOne.push(Topic.create(topic));
-              });
-              component.set('topicListOne', topicListOne);
+                ajax("/c/"+settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
+                  topicListTwo = [];
+                  var usersTwo = result.users;
+                  result.topic_list.topics.slice(0,5).forEach(function(topic){ 
+                    topic.posters.forEach(function(poster){
+                      poster.user = $.grep(usersTwo, function(e){ return e.id == poster.user_id; })[0];
+                    });
+                    topicListTwo.push(Topic.create(topic));
+                  });
+                  component.set('topicListTwo', topicListTwo);
+                });  
+              } 
             });
-            ajax("/c/"+settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
-              topicListTwo = [];
-              var usersTwo = result.users;
-              result.topic_list.topics.slice(0,5).forEach(function(topic){ 
-                topic.posters.forEach(function(poster){
-                  poster.user = $.grep(usersTwo, function(e){ return e.id == poster.user_id; })[0];
-                });
-                topicListTwo.push(Topic.create(topic));
-              });
-              component.set('topicListTwo', topicListTwo);
-            });  
-            ajax("/latest.json?category_id="+settings.feed_three_category_id+"&order=posts&" + postOrder + "=true").then (function(result){ // Get posts from category
-              component.set('topicListThree', result.topic_list.topics.slice(0,3));
+            
+            $(function() {
+              if (settings.feed_three_enabled) {
+                ajax("/latest.json?category_id="+settings.feed_three_category_id+"&order=posts&" + postOrder + "=true").then (function(result){ // Get posts from category
+                  component.set('topicListThree', result.topic_list.topics.slice(0,3));
+                }); 
+              }
             });
+            
             ajax("/site.json").then (function(result){ // Get list of categories
               categoryName = [];
               result.categories.forEach(function(categories){
@@ -276,18 +287,18 @@
     {{/if}}
     {{/if}}
     
-
+    
     {{#if themeSettings.homepage_search_enabled}}
-  <div class="custom-homepage-search" >
-    <div class="wrap custom-homepage-search-wrap">
-      <h1>Welcome to Wyze Communities</h1>
-      
-      <p>Find answers, ask questions, and connect with your fellow community of Wyze users.</p>
-      
-      {{mount-widget widget="search-widget"}}
-      
+    <div class="custom-homepage-search" >
+      <div class="wrap custom-homepage-search-wrap">
+        <h1>Welcome to Wyze Communities</h1>
+        
+        <p>Find answers, ask questions, and connect with your fellow community of Wyze users.</p>
+        
+        {{mount-widget widget="search-widget"}}
+        
+      </div>
     </div>
-  </div>
     {{/if}}
     
     
