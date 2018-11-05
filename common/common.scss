@@ -804,4 +804,9 @@ tbody {
   border-radius: $border-radius 0 0 $border-radius;
 }
 
-
+// Hide likes column for roadmap
+.category-roadmap {
+  th.likes, td.likes {
+    display: none;
+  }
+}
