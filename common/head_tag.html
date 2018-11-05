@@ -1,9 +1,19 @@
 <!-- Shows like column -->
-<script> 
+<script type="text/discourse-plugin" version="0.8">
   var TopicListComponent = require('discourse/components/topic-list').default;
-  TopicListComponent.reopen({
-    showLikes: true
+
+  api.onPageChange((url, title) => {
+    if (url == "/c/roadmap"){ 
+      TopicListComponent.reopen({
+        showLikes: false
+      });
+    } else {
+      TopicListComponent.reopen({
+        showLikes: true
+      });
+    }
   });
+
 </script>
 
 <!-- Custom homepage logic -->
