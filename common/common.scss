@@ -805,8 +805,14 @@ tbody {
 }
 
 // Hide likes column for roadmap
-.category-roadmap {
+body.category-roadmap {
   th.likes, td.likes {
     display: none;
+  }
+}
+
+tr.category-roadmap {
+  td.likes a {
+    visibility: hidden;
   }
 }
