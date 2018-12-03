@@ -53,6 +53,6 @@ feed_three_topics_order:
     - ascending
     - descending
 svg_icons: 
-  default: 'comments'
+  default: 'chevron-left|chevron-right|comments|heart|lock'
   type: list
   description: Additional FontAwesome 5 icons used in this theme
