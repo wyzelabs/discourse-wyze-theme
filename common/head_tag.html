@@ -279,8 +279,8 @@
             <ul class="carousel-content">
             </ul>
           </div>
-          <a href="#" class="jcarousel-control-prev"><i class="fa fa-chevron-left"></i></a>
-          <a href="#" class="jcarousel-control-next"><i class="fa fa-chevron-right"></i></a>
+          <a href="#" class="jcarousel-control-prev">{{d-icon "chevron-left"}}</a>
+          <a href="#" class="jcarousel-control-next">{{d-icon "chevron-right"}}</a>
         </div>
       </div>
     </div>
@@ -350,9 +350,9 @@
               </div>
               
               <div class="custom-homepage-wide-topic-responses">
-                <span class="likes"><i class="fa fa-heart"></i>{{topic.like_count}}</span>
+                <span class="likes">{{d-icon "heart"}} {{topic.like_count}}</span>
                 <a href="/t/{{topic.slug}}/{{topic.id}}/{{topic.last_read_post_number}}">
-                  <span class="comments"><i class="fa fa-comments"></i>{{topic.posts_count}}</span>
+                  <span class="comments">{{d-icon "comments"}} {{topic.posts_count}}</span>
                 </a>
               </div>
               
@@ -384,8 +384,8 @@
               <img class="homepage-category-image" src="{{c.uploaded_logo.url}}" />               
             </div>              
             {{/if}}
-            <h2>{{#if c.read_restricted}}<i class="fa fa-lock">&nbsp;</i>{{/if}}{{c.name}}</h2>
-            <div class="homepage-category-box-count"><i class="fa fa-comments"></i> {{c.topic_count}}</div>
+            <h2>{{#if c.read_restricted}}{{d-icon "lock"}}{{/if}}{{c.name}}</h2>
+            <div class="homepage-category-box-count">{{d-icon "comments"}} {{c.topic_count}}</div>
             
           </div>
         </a>
