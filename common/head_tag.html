@@ -117,7 +117,7 @@
             
             $(function() {
               if (settings.feed_one_two_enabled) {  
-                ajax("/c/"+settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
+                ajax(settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
                   topicListOne = [];
                   var usersOne = result.users;
                   result.topic_list.topics.slice(0,5).forEach(function(topic){
@@ -128,7 +128,7 @@
                   });
                   component.set('topicListOne', topicListOne);
                 });
-                ajax("/c/"+settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
+                ajax(settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
                   topicListTwo = [];
                   var usersTwo = result.users;
                   result.topic_list.topics.slice(0,5).forEach(function(topic){ 

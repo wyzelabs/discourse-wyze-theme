@@ -359,6 +359,14 @@ tbody {
   .custom-homepage-columns { // Two column section with post feeds
     display: flex;
     margin-top: 2em;  
+
+    .discourse-tags {
+      display: none;
+    }
+    .num.likes {
+      display: none;
+    }
+
     @media screen and (max-width: 750px) {
       flex-wrap: wrap;
     }
