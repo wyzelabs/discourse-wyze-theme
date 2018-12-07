@@ -23,16 +23,16 @@ feed_one_title:
   description: custom title
 
 feed_one_category_slug:
-  default: captured-on-wyze
-  description: source of feed content, from the category url following /c/
+  default: /c/captured-on-wyze
+  description: source of feed content, /c/category-name for categories or /tags/tag-name for tags
 
 feed_two_title:
   default: Ask the Community
   description: custom title
 
 feed_two_category_slug:
-  default: ask-the-community
-  description: source of feed content, from the category url following /c/
+  default: /c/ask-the-community
+  description: source of feed content, /c/category-name for categories or /tags/tag-name for tags
 
 feed_three_enabled: 
    default: true
