@@ -824,3 +824,24 @@ tr.category-roadmap {
     visibility: hidden;
   }
 }
+
+// Custom user page 
+
+.about-user-card {
+  span h1 {
+    font-size: 1.4em;
+  }
+  .names {
+    width: 50%;
+    h2.username {
+      display: none;
+    }
+    .avatar-flair {
+      display: none;
+    }
+  }
+  .btn.more-user-badges {
+    padding: 3px 8px;
+    border-radius: 0;
+  }
+}
