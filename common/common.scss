@@ -148,6 +148,28 @@ button, // General button styles
   padding-top: calc(5.8572em + 56px); // Add height of Wyze header
 }
 
+li.dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.wyze-nav .wrap li.dropdown-toggle:hover > a {
+  color: $tertiary;
+}
+
+.dropdown-toggle:after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid;
+  border-right: .3em solid transparent;
+  border-bottom: 0;
+  border-left: .3em solid transparent;
+}
+
 .d-header { // Discourse header position changes based on nav
   top: 56px;
   @media screen and (max-width: 475px) {
@@ -168,7 +190,6 @@ button, // General button styles
   z-index: 1030;
   background: $nav-bg;
   color: $secondary;
-  padding: 14px 0 16px;
   font-size: 16px;
   @media screen and (max-width: 475px) { 
     font-size: 13px;
@@ -178,6 +199,7 @@ button, // General button styles
   }
   .logo {
     text-align: center;
+    padding: 14px 0 16px 0;
     a {display: block;}
     img {
       max-width: 102px;
@@ -190,14 +212,18 @@ button, // General button styles
     }
     
   }
+  
   ul {
     list-style-type: none;
     display: flex;
     margin: 0;
     align-self: center;
+    position: relative;
     li {
-      font-weight: bold;
+      padding: 14px 0 16px 0;
       margin: 0 16px;
+      background: #002632;
+      z-index: 2;
       @media screen and (max-width: 475px) {
         margin: 0 8px;
       }
@@ -213,6 +239,39 @@ button, // General button styles
     }
     
   }
+  
+  ul.community-dropdown {
+    position: absolute;
+    display: none;
+    top: 44px;
+    @media screen and (max-width: 475px) {
+      top: 39px;
+    }
+    left: -15px;
+    border-top: 10px solid transparent;
+    li {
+      background: #fff;
+      display: block;
+      white-space: nowrap;
+      padding: .5em 1em;
+      margin: 0;
+      &:first-of-type {
+        padding-top: 1em;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 1em;
+      }
+      a {
+        color: $primary;
+        font-weight: 500;
+        &:hover {
+          color: $tertiary;
+        }
+      }
+    }
+  }
+  
   .wrap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -359,14 +418,14 @@ tbody {
   .custom-homepage-columns { // Two column section with post feeds
     display: flex;
     margin-top: 2em;  
-
+    
     .discourse-tags {
       display: none;
     }
     .num.likes {
       display: none;
     }
-
+    
     @media screen and (max-width: 750px) {
       flex-wrap: wrap;
     }

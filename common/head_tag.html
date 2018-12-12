@@ -10,7 +10,7 @@
 <script type="text/discourse-plugin" version="0.8">
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
-  
+
   if (settings.feed_three_topics_order == "ascending") { 
     var postOrder = "ascending"
   } else {
@@ -112,6 +112,9 @@
                 });
               });
             })(jQuery);
+
+      
+  
             
             // Homepage feeds 
             
