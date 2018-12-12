@@ -157,6 +157,23 @@ li.dropdown-toggle {
   color: $tertiary;
 }
 
+.wyze-nav {
+ .mobile-only {
+   display: none;
+ }
+}
+
+.mobile-view {
+  .wyze-nav {
+    .desktop-only {
+      display: none;
+    }
+    .mobile-only {
+      display: inline
+    }
+  }
+}
+
 .dropdown-toggle:after {
   display: inline-block;
   width: 0;
