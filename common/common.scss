@@ -158,9 +158,9 @@ li.dropdown-toggle {
 }
 
 .wyze-nav {
- .mobile-only {
-   display: none;
- }
+  .mobile-only {
+    display: none;
+  }
 }
 
 .mobile-view {
@@ -904,6 +904,7 @@ tr.category-roadmap {
 // Team page elements
 
 .about-user-card {
+  margin-bottom: 30px;
   .avatar-flair {
     display: none;
   }
@@ -920,6 +921,12 @@ tr.category-roadmap {
     display: none;
     h3[title] {
       display: inline;
+    }
+  }
+  @media screen and (min-width: 951px) {
+    &:last-child {
+      margin-right: auto;
+      margin-left: 3.2%;
     }
   }
 }
