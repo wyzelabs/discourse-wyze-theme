@@ -267,7 +267,7 @@ li.dropdown-toggle {
     left: -15px;
     border-top: 10px solid transparent;
     li {
-      background: #fff;
+      background: #f1f3f3;
       display: block;
       white-space: nowrap;
       padding: .5em 1em;
@@ -901,10 +901,25 @@ tr.category-roadmap {
   }
 }
 
-.user-card-avatar .avatar-flair {
-  display: none;
-}
+// Team page elements
 
-.about-user-card .badge-section {
-  font-size: .875em;
+.about-user-card {
+  .avatar-flair {
+    display: none;
+  }
+  .badge-section {
+    font-size: .875em;
+  }
+  .location-and-website {
+    display: none;
+  }
+  .usercard-controls {
+    display: none;
+  }
+  .metadata h3 {
+    display: none;
+    h3[title] {
+      display: inline;
+    }
+  }
 }
