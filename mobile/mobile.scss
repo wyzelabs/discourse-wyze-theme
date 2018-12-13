@@ -1,4 +1,12 @@
 .mobile-view {
+  section.about.description {
+    margin-bottom: 40px;
+  }
+
+  .about-user-card .bio .overflow {
+    max-height: 55px;
+  }
+
   .about-user-card.no-bg, 
   .about-user-card.hide-bg {
     z-index: 4;
