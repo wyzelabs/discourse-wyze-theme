@@ -1,0 +1,12 @@
+.mobile-view {
+  .about-user-card.no-bg, 
+  .about-user-card.hide-bg {
+    z-index: 4;
+  }
+
+  .about-card-bg {
+    z-index: -2;
+    width: 100%;
+    left: 0;
+  }
+}
