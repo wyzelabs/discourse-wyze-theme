@@ -18,3 +18,11 @@
     left: 0;
   }
 }
+
+.menu-panel.slide-in {
+  margin-top: 56px;
+}
+
+.menu-panel.slide-in .panel-body {
+  height: calc(100% - 56px) !important;
+}
