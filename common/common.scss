@@ -637,24 +637,24 @@ tbody {
       @media screen and (max-width: 820px) {
         flex: 0 1 30%;
         margin: 0 1.65% 2%;  
-        &:nth-of-type(n+4) {
-          display: none;
-        }
+        // &:nth-of-type(n+4) {
+        //   display: none;
+        // }
       }
       @media screen and (max-width: 700px) {
         flex: 0 1 46.7%;
         margin: 0 1.65% 2%;  
-        &:nth-of-type(n+3) {
-          display: none;
-        }
+        // &:nth-of-type(n+3) {
+        //   display: none;
+        // }
         
       }
       @media screen and (max-width: 375px) {
         flex: 0 1 100%;
         margin: 0 0 2%;  
-        img {
-          display: none;
-        }
+        // img {
+        //   display: none;
+        // }
       }
       &.show {
         display: block !important;
