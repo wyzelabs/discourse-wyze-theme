@@ -934,8 +934,19 @@ section.about.description {
   margin-bottom: 20px;
 }
 
+@media screen and (min-width: 951px) {
+  section.about.group {
+    justify-content: unset;
+  }
+}
+
 .about-user-card {
   margin-bottom: 30px;
+  @media screen and (min-width: 951px) {
+    &:not(:nth-of-type(3n)) {
+    margin-right: 3%;
+    }
+  }
   .avatar-flair {
     display: none;
   }
