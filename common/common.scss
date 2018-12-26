@@ -965,4 +965,11 @@ section.about.description {
       display: inline;
     }
   }
+  .badge-section {
+    display: flex;
+    flex-wrap: wrap;
+    span {
+      margin-right: .25em;
+    }
+  }
 }
