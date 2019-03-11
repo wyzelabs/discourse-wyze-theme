@@ -1024,3 +1024,19 @@ section.about.description {
   // ensure fullscreen composer has highest z-index
   z-index: 9999;
 }
+
+// Roadmap category specific 
+
+body.category-roadmap {
+  li a[href="c/roadmap/l/top"],
+  li a[href="c/roadmap/l/unread"] {
+    display: none;
+  }
+
+  li a[href="c/roadmap/l/votes"] {
+    &:before {
+      content: "TOP";
+      margin-right: .25em;
+    }
+  }
+}
