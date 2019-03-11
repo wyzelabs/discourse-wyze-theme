@@ -1028,15 +1028,17 @@ section.about.description {
 // Roadmap category specific 
 
 body.category-roadmap {
-  li a[href="/c/roadmap/l/top"],
-  li a[href="/c/roadmap/l/unread"] {
-    display: none;
-  }
+  #navigation-bar {
+    li a[href="/c/roadmap/l/top"],
+    li a[href="/c/roadmap/l/unread"] {
+      display: none;
+    }
 
-  li a[href="/c/roadmap/l/votes"] {
-    &:before {
-      content: "TOP";
-      margin-right: .25em;
+    li a[href="/c/roadmap/l/votes"] {
+      &:before {
+        content: "TOP";
+        margin-right: .25em;
+      }
     }
   }
 }
