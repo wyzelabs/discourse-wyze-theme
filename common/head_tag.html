@@ -402,6 +402,19 @@
   {{/if}}
 </script>
 
+<script type="text/discourse-plugin" version="0.8.25">
+  api.modifyClass('component:edit-category-settings', {
+    availableViews: Ember.computed(function() {
+      let views = this._super();
+      let voteView = {};
+      voteView["name"] = "Votes";
+      voteView["value"] = "votes";
+      views.push(voteView);
+      return views;
+    })
+  });
+</script>
+
 <script type="text/javascript"> 
   
   /*! jCarousel - v0.3.8 - 2018-05-31
