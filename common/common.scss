@@ -47,9 +47,9 @@ $border-radius: 3px; // Controls all border radii throughout the theme
 
 button, // General button styles
 .btn, .btn[href],
-.list-controls .select-kit.categories-admin-dropdown button, 
-.list-controls .select-kit.tags-admin-dropdown button, 
-.list-controls .select-kit.category-notifications-button button, 
+.list-controls .select-kit.categories-admin-dropdown button,
+.list-controls .select-kit.tags-admin-dropdown button,
+.list-controls .select-kit.category-notifications-button button,
 .list-controls .select-kit.tag-notifications-button button,
 #topic-footer-buttons .topic-notifications-button .btn {
   padding: 6px 16px;
@@ -259,6 +259,7 @@ li.dropdown-toggle {
       margin: 0 16px;
       background: #002632;
       z-index: 2;
+      white-space: nowrap;
       @media screen and (max-width: 475px) {
         margin: 0 8px;
       }
@@ -1024,7 +1025,7 @@ section.about.description {
   z-index: 9999;
 }
 
-// Roadmap category specific 
+// Roadmap category specific
 
 body.category-roadmap {
   #navigation-bar {
@@ -1036,7 +1037,7 @@ body.category-roadmap {
     li a[href="/c/roadmap/l/votes"] {
       &:before {
         content: "TOP";
-        margin-right: .25em;
+        margin-right: 0.25em;
       }
     }
   }
