@@ -985,6 +985,10 @@ section.about.description {
   opacity: 1;
   -webkit-transform: unset;
   transform: unset;
+  .more-user-badges {
+    padding: 0.45em 8px !important;
+    min-height: unset;
+  }
   .avatar-flair {
     display: none;
   }
@@ -1006,6 +1010,9 @@ section.about.description {
   .badge-section {
     display: flex;
     flex-wrap: wrap;
+    .user-badge {
+      margin-bottom: 0.5em;
+    }
     span {
       margin-right: 0.15em;
     }
