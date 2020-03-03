@@ -980,13 +980,11 @@ section.about.description {
 }
 
 .about-user-card {
+  position: relative;
   margin-bottom: 30px;
   opacity: 1;
-  @media screen and (min-width: 951px) {
-    &:not(:nth-of-type(3n)) {
-      margin-right: 3%;
-    }
-  }
+  -webkit-transform: unset;
+  transform: unset;
   .avatar-flair {
     display: none;
   }
