@@ -106,6 +106,10 @@ button, // General button styles
   opacity: 1;
 }
 
+.btn-flat.close {
+  border: none;
+}
+
 .select-kit.dropdown-select-box.composer-actions .d-icon {
   // Composer reply-type dropdown
   border-radius: $border-radius;
