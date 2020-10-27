@@ -159,10 +159,6 @@ button, // General button styles
 
 // Wyze site header
 
-#main-outlet {
-  padding-top: calc(5.8572em + 56px); // Add height of Wyze header
-}
-
 li.dropdown-toggle {
   display: flex;
   align-items: center;
@@ -216,9 +212,16 @@ li.dropdown-toggle {
   }
 }
 
+.d-header-wrap {
+  top: 3.73em;
+  .mobile-view & {
+    top: 3.2em;
+  }
+}
+
 .wyze-nav {
   // Fixed Wyze header
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   z-index: 1030;
@@ -440,23 +443,13 @@ tbody {
   }
 }
 
-// Custom homepage layout
-
-.show-custom-homepage {
-  #main-outlet {
-    // Remove default padding on custom homepage
-    padding-top: 0;
-  }
+.container.posts .topic-navigation {
+  top: 9em;
 }
 
+// Custom homepage layout
+
 .custom-homepage-wrapper {
-  padding-top: 120px;
-  .mobile-view & {
-    padding-top: 107px;
-    @media screen and (max-width: 330px) {
-      padding-top: 104px;
-    }
-  }
   h2 {
     font-size: 1.75em;
     &.center-title {
@@ -1044,6 +1037,21 @@ body.category-roadmap {
       &:before {
         content: "TOP";
         margin-right: 0.25em;
+      }
+    }
+  }
+}
+
+.badge-notification.new-posts {
+  color: var(--primary);
+}
+
+.panel-body-bottom {
+  .btn {
+    .discourse-no-touch & {
+      &:hover {
+        background: var(--tertiary);
+        color: var(--secondary);
       }
     }
   }
