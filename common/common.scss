@@ -217,14 +217,15 @@ li.dropdown-toggle {
 }
 
 .d-header-wrap {
-  top: 56px;
+  top: 54px;
   .mobile-view & {
-    top: 50px;
+    top: 48px;
   }
 }
 
 .wyze-nav {
   // Fixed Wyze header
+  position: -webkit-sticky;
   position: sticky;
   width: 100%;
   top: 0;
