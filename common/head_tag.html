@@ -1,6 +1,6 @@
 <!-- Shows like column -->
 <script> 
-  var TopicListComponent = require('discourse/components/topic-list').default;
+  const TopicListComponent = require('discourse/components/topic-list').default;
   TopicListComponent.reopen({
     showLikes: true
   });
@@ -10,29 +10,31 @@
 <script type="text/discourse-plugin" version="0.8">
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
+  const getURL = require('discourse-common/lib/get-url').default;
+  let postOrder = ""
 
   if (settings.feed_three_topics_order == "ascending") { 
-    var postOrder = "ascending"
+    postOrder = "ascending"
   } else {
-    var postOrder = "descending"
+    postOrder = "descending"
   };
   
   api.registerConnectorClass('below-site-header', 'custom-homepage', {
     actions: {
       createWyzeMoment(){
-        if (Discourse.User.current()){
+        if (this.currentUser){
           api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
         }
         else {
-          return window.location = Discourse.getURL("/signup");
+          return window.location = getURL("/signup");
         }
       },
       createLearnAndExplore(){
-        if (Discourse.User.current()){
+        if (this.currentUser){
           api.container.lookup('controller:composer').open({action: "createTopic", draftKey: "createTopic"});
         }
         else {
-          return window.location = Discourse.getURL("/signup");
+          return window.location = getURL("/signup");
         }
       },
       showCategories(){
@@ -55,7 +57,7 @@
               let carousel_videos = {};
               
               settings.carousel_videos.split("|").map(i => {
-                var seg = $.map(i.split(","), $.trim),
+                let seg = $.map(i.split(","), $.trim),
                 type = seg[0],
                 id = seg[1]
                 
@@ -71,11 +73,11 @@
             // Setup jcarousel 
             (function($) {
               $(function() {
-                var jcarousel = $('.jcarousel');
+                let jcarousel = $('.jcarousel');
                 
                 jcarousel
                 .on('jcarousel:reload jcarousel:create', function () {
-                  var carousel = $(this),
+                  let carousel = $(this),
                   width = carousel.innerWidth();
                   
                   if (width >= 2000) {
@@ -121,8 +123,8 @@
             $(function() {
               if (settings.feed_one_two_enabled) {  
                 ajax(settings.feed_one_category_slug+".json").then (function(result){ // Get posts from category
-                  topicListOne = [];
-                  var usersOne = result.users;
+                  let topicListOne = [];
+                  let usersOne = result.users;
                   result.topic_list.topics.slice(0,5).forEach(function(topic){
                     topic.posters.forEach(function(poster){
                       poster.user = $.grep(usersOne, function(e){ return e.id == poster.user_id; })[0];
@@ -132,8 +134,8 @@
                   component.set('topicListOne', topicListOne);
                 });
                 ajax(settings.feed_two_category_slug+".json").then (function(result){ // Get posts from category
-                  topicListTwo = [];
-                  var usersTwo = result.users;
+                  let topicListTwo = [];
+                  let usersTwo = result.users;
                   result.topic_list.topics.slice(0,5).forEach(function(topic){ 
                     topic.posters.forEach(function(poster){
                       poster.user = $.grep(usersTwo, function(e){ return e.id == poster.user_id; })[0];
@@ -154,7 +156,7 @@
             });
             
             ajax("/site.json").then (function(result){ // Get list of categories
-              categoryName = [];
+              let categoryName = [];
               result.categories.forEach(function(categories){
                 if (categories.id != 1) { // Don't show Uncategorized
                 categoryName.push(categories);
@@ -162,7 +164,7 @@
             });
             component.set('categoryName', categoryName);
             if (categoryName.length > 4) {
-              showMoreCategories = true;
+              const showMoreCategories = true;
               component.set('showMoreCategories', showMoreCategories);
             } 
           });  
@@ -206,6 +208,7 @@
     clickOutside: function() {
       const formFactor = this.state.formFactor;
       if (formFactor === 'menu') {
+        // TODO: this is showing "toggleSearchMenu not found" in console
         return this.sendWidgetAction('toggleSearchMenu');
       } else {
         this.state.showHeaderResults = false;
@@ -273,8 +276,8 @@
   
   
   <div class="custom-homepage-wrapper"> 
-    {{#if themeSettings.carousel_enabled}}
-    {{#if themeSettings.carousel_videos}}
+    {{#if (theme-setting 'carousel_enabled')}}
+    {{#if (theme-setting 'carousel_videos')}}
     <div class="carousel-wrap">   
       <div id="jcarousel" class="wrapper"> <!-- Carousel wrapper -->
         <div class="jcarousel-wrapper">
@@ -291,7 +294,7 @@
     {{/if}}
     
     
-    {{#if themeSettings.homepage_search_enabled}}
+    {{#if (theme-setting 'homepage_search_enabled')}}
     <div class="custom-homepage-search" >
       <div class="wrap custom-homepage-search-wrap">
         <h1>Welcome to Wyze Communities</h1>
@@ -308,35 +311,35 @@
     
     
     
-    {{#if themeSettings.feed_one_two_enabled}}
+    {{#if (theme-setting 'feed_one_two_enabled')}}
     <div class="wrap custom-homepage-columns"> <!-- Two column homepage feed -->
       <div class="col col-1">
         <div class="header-wrapper">
-          <h2>{{themeSettings.feed_one_title}}</h2>
+          <h2>{{theme-setting 'feed_one_title'}}</h2>
           {{#d-button action="createWyzeMoment" class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListOne showPosters=true}}
-        <a href="{{themeSettings.feed_one_category_slug}}" class="btn btn-more">More</a>
+        <a href="{{theme-setting 'feed_one_category_slug'}}" class="btn btn-more">More</a>
       </div>
       <div class="col col-2">
         <div class="header-wrapper">
-          <h2>{{themeSettings.feed_two_title}}</h2>
+          <h2>{{theme-setting 'feed_two_title'}}</h2>
           {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListTwo showPosters=true}}
-        <a href="{{themeSettings.feed_two_category_slug}}" class="btn btn-more">More</a>
+        <a href="{{theme-setting 'feed_two_category_slug'}}" class="btn btn-more">More</a>
       </div>
       
     </div>
     
     {{/if}}
     
-    {{#if themeSettings.feed_three_enabled}}
+    {{#if (theme-setting 'feed_three_enabled')}}
     
     <div class="custom-homepage-wide"> <!-- One column homepage feed -->
       <div class="wrap">
         <div class="custom-homepage-wide-title">
-          <h2 class="center-title">{{themeSettings.feed_three_title}}</h2>
+          <h2 class="center-title">{{theme-setting 'feed_three_title'}}</h2>
           
         </div>
         <div class="custom-homepage-wide-flex-wrapper">
