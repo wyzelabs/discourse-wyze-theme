@@ -1061,3 +1061,26 @@ body.category-roadmap {
     }
   }
 }
+
+.search-image-left {
+  position: absolute;
+  left: 25px;
+  img {
+    width: 175px;
+  }
+}
+.search-image-right {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  img {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: $large-width) {
+  .search-image-left,
+  .search-image-right {
+    display: none
+  }
+}
