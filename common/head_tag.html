@@ -297,14 +297,21 @@
     {{#if (theme-setting 'homepage_search_enabled')}}
     <div class="custom-homepage-search" >
       <div class="wrap custom-homepage-search-wrap">
-        <h1>Welcome to the Wyze Forum</h1>
-        
-        <p>Find answers, ask questions, and connect with your fellow community of Wyze users.</p> 
+        <span class="search-image-left">
+          <img src="{{theme-setting 'theme_uploads.search-background-left'}}">
+        </span>
+        <div class="search-controls">
+          <h1>Welcome to the Wyze Forum</h1>
 
-        {{mount-widget widget="search-widget"}}
-        
-        <p>This community is primarily for member interactions. Please go to the official support site for product guides and more help from Wyze.</p>
-        
+          <p>Find answers, ask questions, and connect with your fellow community of Wyze users.</p>
+
+          {{mount-widget widget="search-widget"}}
+
+          <p>This community is primarily for member interactions. Please go to the official support site for product guides and more help from Wyze.</p>
+        </div>
+        <span class="search-image-right">
+          <img src="{{theme-setting 'theme_uploads.search-background-right'}}">
+        </span>
       </div>
     </div>
     {{/if}}
