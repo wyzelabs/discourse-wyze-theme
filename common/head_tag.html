@@ -416,6 +416,8 @@
 
 <script type="text/discourse-plugin" version="0.8.25">
   api.modifyClass('component:edit-category-settings', {
+    pluginId: 'discourse-wyze-theme',
+
     availableViews: Ember.computed(function() {
       let views = this._super();
       let voteView = {};
