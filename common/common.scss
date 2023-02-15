@@ -1,4 +1,4 @@
-@import "common/foundation/variables"; // Pulls in Discourse SASS variables
+@import 'common/foundation/variables'; // Pulls in Discourse SASS variables
 
 $nav-bg: #002632;
 
@@ -31,7 +31,7 @@ $nav-bg: #002632;
 // Global
 
 html {
-  font-family: "neutrif-regular", sans-serif;
+  font-family: 'neutrif-regular', sans-serif;
   font-size: 15px;
 }
 
@@ -195,7 +195,7 @@ li.dropdown-toggle {
   height: 0;
   margin-left: 0.255em;
   vertical-align: 0.255em;
-  content: "";
+  content: '';
   border-top: 0.3em solid;
   border-right: 0.3em solid transparent;
   border-bottom: 0;
@@ -753,7 +753,7 @@ tbody {
     padding: 1em 8px 2em 8px;
     margin-top: 0.5em;
   }
-  .search-menu input[type="text"] {
+  .search-menu input[type='text'] {
     margin: 0.5em 0;
     width: 100%;
   }
@@ -1033,14 +1033,14 @@ section.about.description {
 
 body.category-roadmap {
   #navigation-bar {
-    li a[href="/c/roadmap/l/top"],
-    li a[href="/c/roadmap/l/unread"] {
+    li a[href='/c/roadmap/l/top'],
+    li a[href='/c/roadmap/l/unread'] {
       display: none;
     }
 
-    li a[href="/c/roadmap/l/votes"] {
+    li a[href='/c/roadmap/l/votes'] {
       &:before {
-        content: "TOP";
+        content: 'TOP';
         margin-right: 0.25em;
       }
     }
@@ -1081,6 +1081,40 @@ body.category-roadmap {
 @media screen and (max-width: $large-width) {
   .search-image-left,
   .search-image-right {
-    display: none
+    display: none;
+  }
+}
+
+// new menu panel positioning adjustment
+
+.desktop-view {
+  .menu-panel.slide-in {
+    margin-top: 3.25em; // accounts for custom header
+  }
+}
+
+// Sidebar adjustments
+
+.sidebar-wrapper {
+  --header-offset: 7.5em; // accounts for custom header
+}
+
+.header-sidebar-toggle button {
+  border: none;
+  &:hover {
+    .d-icon {
+      color: var(
+        --primary-medium
+      ) !important; // overrides some overspecific core style
+    }
+  }
+}
+
+.sidebar-section-wrapper
+  .sidebar-section-header.sidebar-section-header-collapsable {
+  border: none;
+  background: transparent;
+  .d-icon {
+    color: var(--primary-medium);
   }
 }
