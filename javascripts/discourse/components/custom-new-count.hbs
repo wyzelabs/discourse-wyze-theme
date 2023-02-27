@@ -1,0 +1,9 @@
+{{#if this.currentUser}}
+  <li>
+    <a href='/new'>New topics
+      {{#unless (eq this.totalNew 0)}}
+        ({{this.totalNew}})
+      {{/unless}}
+    </a>
+  </li>
+{{/if}}
