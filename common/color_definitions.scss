@@ -1,0 +1,5 @@
+:root {
+   --wyze-darken-tertiary: #{darken($tertiary, 10%)};
+   --wyze-darken-danger: #{darken($danger, 10%)};
+   --wyze-lighten-tertiary: #{lighten($tertiary, 54%)};
+ }
