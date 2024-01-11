@@ -184,6 +184,7 @@
 <script type="text/discourse-plugin" version='0.8'> // Simplified version of header search theme component
   const searchMenuWidget = api.container.factoryFor('widget:search-menu');
   const corePanelContents = searchMenuWidget.class.prototype['panelContents'];
+  const { scheduleOnce } = require("@ember/runloop");
   api.reopenWidget('search-menu', {
     buildKey: function(attrs) {
       let type = attrs.formFactor || 'menu'
@@ -241,7 +242,7 @@
       if (formFactor === 'menu' || showHeaderResults) {
         return contents;
       } else {
-        Ember.run.scheduleOnce('afterRender', this, () => {
+        scheduleOnce('afterRender', this, () => {
           $('#search-term').val('');
         })
         return contents.filter((widget) => {
@@ -323,7 +324,7 @@
       <div class="col col-1">
         <div class="header-wrapper">
           <h2>{{theme-setting 'feed_one_title'}}</h2>
-          {{#d-button action="createWyzeMoment" class="btn-primary btn"}}Post{{/d-button}}
+          {{#d-button action=(action "createWyzeMoment") class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListOne showPosters=true}}
         <a href="{{theme-setting 'feed_one_category_slug'}}" class="btn btn-more">More</a>
@@ -331,7 +332,7 @@
       <div class="col col-2">
         <div class="header-wrapper">
           <h2>{{theme-setting 'feed_two_title'}}</h2>
-          {{#d-button action="createLearnAndExplore" class="btn-primary btn"}}Post{{/d-button}}
+          {{#d-button action=(action "createLearnAndExplore") class="btn-primary btn"}}Post{{/d-button}}
         </div>
         {{topic-list topics=topicListTwo showPosters=true}}
         <a href="{{theme-setting 'feed_two_category_slug'}}" class="btn btn-more">More</a>
@@ -386,7 +387,7 @@
         <div class="homepage-category-expansion">
           {{#if showMoreCategories}}
           
-          {{#d-button action="showCategories" id="hide-homepage" class="btn btn-primary btn-more-categories"}}show all categories{{/d-button}}
+          {{#d-button action=(action "showCategories") id="hide-homepage" class="btn btn-primary btn-more-categories"}}show all categories{{/d-button}}
           {{/if}}
         </div>
       </div>
@@ -415,15 +416,18 @@
 </script>
 
 <script type="text/discourse-plugin" version="0.8.25">
+  const discourseComputed = require("discourse-common/utils/decorators").default;
   api.modifyClass('component:edit-category-settings', {
-    availableViews: Ember.computed(function() {
+    pluginId: "wyze-vote-view",
+    @discourseComputed
+    availableViews() {
       let views = this._super();
       let voteView = {};
       voteView["name"] = "Votes";
       voteView["value"] = "votes";
       views.push(voteView);
       return views;
-    })
+    },
   });
 </script>
 
