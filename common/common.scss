@@ -44,7 +44,7 @@ $border-radius: 3px; // Controls all border radii throughout the theme
 // Buttons, navs
 
 button, // General button styles
-.btn, .btn[href],
+.btn:not(.btn-flat),
 .list-controls .select-kit.categories-admin-dropdown button,
 .list-controls .select-kit.tags-admin-dropdown button,
 .list-controls .select-kit.category-notifications-button button,
@@ -146,12 +146,23 @@ button, // General button styles
   }
 }
 
+.navigation-container {
+  details summary {
+    height: 100%;
+  }
+}
+
+.panel-body-bottom {
+  .btn {
+    border: none;
+  }
+}
+
 .list-controls .btn {
   font-size: $font-0;
 }
 
 .list-controls .combo-box .combo-box-header {
-  height: auto;
   padding: 3px 6px 4px 10px;
 }
 
@@ -460,194 +471,101 @@ tbody {
 
 // Custom homepage layout
 
+.show-custom-homepage {
+  #main-outlet-wrapper #main-outlet {
+    // for reordering theme components
+    display: flex;
+    flex-direction: column;
+    .search-banner {
+      order: -1;
+    }
+  }
+}
+
+.show-custom-homepage .custom-homepage-columns {
+  // Two column section with post feeds
+  display: flex;
+  margin: 1em 0 1em 0;
+
+  .discourse-tags {
+    display: none;
+  }
+  .num.likes {
+    display: none;
+  }
+
+  @media screen and (max-width: 750px) {
+    flex-wrap: wrap;
+  }
+  .col {
+    width: 50%;
+    @media screen and (max-width: 750px) {
+      width: 100%;
+    }
+  }
+  .col-1 {
+    margin-right: 1.5em;
+    + .col-2 {
+      margin-left: 1.5em;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .col-1,
+    .col-2 {
+      margin: 0 0 2em 0 !important;
+    }
+  }
+  .header-wrapper {
+    display: flex;
+    margin-bottom: 1em;
+    align-items: flex-start;
+    background: transparent;
+    padding: 0;
+    a h2 {
+      color: var(--primary);
+    }
+    button {
+      margin-left: auto;
+    }
+  }
+
+  .topic-list .topic-list-data:last-of-type {
+    padding-right: 0;
+  }
+
+  .topic-list .topic-list-item:nth-child(2n + 1) {
+    background: transparent;
+  }
+  .topic-list {
+    // Hides extra details in topic feeds
+    thead,
+    td.posts-map,
+    td.num.views,
+    td.category {
+      display: none;
+    }
+    td.posters {
+      a {
+        display: none;
+        &:last-of-type {
+          display: inline-block;
+        }
+      }
+    }
+    .main-link {
+      width: 80%;
+    }
+  }
+}
+
 .custom-homepage-wrapper {
+  margin-top: 0;
   h2 {
     font-size: 1.75em;
-    &.center-title {
-      width: 100%;
-      text-align: center;
-    }
+    width: 100%;
+    text-align: center;
     @media screen and (max-width: 750px) {
       font-size: 1.5em;
-    }
-  }
-
-  .custom-homepage-columns {
-    // Two column section with post feeds
-    display: flex;
-    margin-top: 2em;
-
-    .discourse-tags {
-      display: none;
-    }
-    .num.likes {
-      display: none;
-    }
-
-    @media screen and (max-width: 750px) {
-      flex-wrap: wrap;
-    }
-    .col {
-      width: 50%;
-      @media screen and (max-width: 750px) {
-        width: 100%;
-      }
-    }
-    .col-1 {
-      margin-right: 1.5em;
-      + .col-2 {
-        margin-left: 1.5em;
-      }
-    }
-    @media screen and (max-width: 750px) {
-      .col-1,
-      .col-2 {
-        margin: 0 0 2em 0 !important;
-      }
-    }
-    .header-wrapper {
-      display: flex;
-      margin-bottom: 1em;
-      align-items: flex-start;
-      button {
-        margin-left: auto;
-      }
-    }
-    .topic-list {
-      // Hides extra details in topic feeds
-      thead,
-      td.posts-map,
-      td.num.views,
-      td.category {
-        display: none;
-      }
-      td.posters {
-        a {
-          display: none;
-          &:last-of-type {
-            display: inline-block;
-          }
-        }
-      }
-      .main-link {
-        width: 80%;
-      }
-    }
-  }
-
-  .custom-homepage-wide {
-    // 3 column section
-    padding: 1.25em 0 0.5em;
-    margin: 2.5em 0 2em 0;
-    background: var(--primary-very-low);
-    @media screen and (max-width: 750px) {
-      margin: 1em 0 2em;
-    }
-    .wrap {
-      padding: 2em 0 2.5em;
-      @media screen and (max-width: 1110px) {
-        padding: 3em 8px;
-      }
-      @media screen and (max-width: 750px) {
-        padding: 1em 8px 2em;
-      }
-    }
-
-    .custom-homepage-wide-flex-wrapper {
-      display: flex;
-      margin: 1em -1.7% 0;
-      @media screen and (max-width: 450px) {
-        flex-wrap: wrap;
-      }
-    }
-    .custom-homepage-wide-topic {
-      // Topic container
-      flex: 1 1 25%;
-      margin: 0 1.65% 2%;
-      border: 1px solid var(--primary-low);
-      background: var(--secondary);
-      align-content: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      @media screen and (max-width: 750px) {
-        &:last-of-type {
-          display: none;
-        }
-      }
-      @media screen and (max-width: 450px) {
-        flex: 1 1 100%;
-        margin-bottom: 1em;
-        &:last-of-type {
-          display: none;
-          margin-bottom: 0;
-        }
-      }
-      a {
-        color: var(--primary);
-      }
-      h3 {
-        margin: 0;
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        flex: 1 1 auto;
-        padding: 1em 2em;
-        font-size: $font-up-1;
-        font-weight: normal;
-        min-height: 75px;
-        background: var(--secondary);
-      }
-    }
-    .custom-homepage-wide-title {
-      // Headline
-      text-transform: capitalize;
-      display: flex;
-      margin-bottom: 1.5em;
-      button {
-        align-self: flex-start;
-        margin-left: auto;
-      }
-      @media screen and (max-width: 450px) {
-        margin-bottom: 0.25em;
-        flex-wrap: wrap;
-        text-align: center;
-        button {
-          display: none;
-        }
-      }
-    }
-    .custom-homepage-wide-topic-responses {
-      // Post count, like count
-      margin-left: auto;
-      display: flex;
-      flex-direction: column;
-    }
-    .custom-homepage-wide-topic-info {
-      // Post count, like count
-      box-sizing: border-box;
-      width: calc(100% - 2em);
-      padding: 1em 0;
-      margin: 0 1em;
-      background: var(--secondary);
-      border-top: 1px solid var(--primary-low);
-      display: flex;
-      color: var(--primary-medium);
-      .d-icon {
-        margin-right: 0.25em;
-        color: var(--primary-low-mid);
-      }
-      a {
-        color: var(--primary-medium);
-      }
-
-      img {
-        max-width: 40px;
-        margin-top: 0.15em;
-        margin-right: 0.5em;
-        border-radius: 100%;
-      }
     }
   }
 
@@ -662,10 +580,6 @@ tbody {
     a.box {
       position: relative;
       min-width: 0;
-      &:nth-of-type(n + 5) {
-        // Setting for numbers of category to show
-        //display: none;
-      }
       flex: 0 1 21.7%;
       margin: 0 1.65% 2%;
       &:hover {
@@ -676,23 +590,14 @@ tbody {
       @media screen and (max-width: 820px) {
         flex: 0 1 30%;
         margin: 0 1.65% 2%;
-        // &:nth-of-type(n+4) {
-        //   display: none;
-        // }
       }
       @media screen and (max-width: 700px) {
         flex: 0 1 46.7%;
         margin: 0 1.65% 2%;
-        // &:nth-of-type(n+3) {
-        //   display: none;
-        // }
       }
       @media screen and (max-width: 375px) {
         flex: 0 1 100%;
         margin: 0 0 2%;
-        // img {
-        //   display: none;
-        // }
       }
       &.show {
         display: block !important;
@@ -700,8 +605,6 @@ tbody {
     }
 
     .homepage-category-box {
-      // Category container
-      // border: 1px solid var(--primary-low);
       padding: 1em;
       text-align: center;
       box-sizing: border-box;
@@ -718,7 +621,7 @@ tbody {
         }
       }
       .category-image-wrapper {
-        margin: 0 auto 1rem;
+        margin: 0 auto 0;
       }
       img {
         border-radius: 100%;
@@ -746,88 +649,6 @@ tbody {
 
 // Custom homepage search
 
-.custom-homepage-search {
-  background: $homepage_search_background;
-}
-
-.custom-homepage-search-wrap {
-  padding: 3em 8px 4em;
-  margin: 0 auto 3em auto;
-  position: relative;
-  border-bottom: 1px solid var(--primary-low);
-  @media screen and (max-width: 700px) {
-    padding: 1em 8px 2em 8px;
-    margin-top: 0.5em;
-  }
-  .search-menu input[type='text'] {
-    margin: 0.5em 0;
-    width: 100%;
-  }
-
-  h1,
-  p {
-    text-align: center;
-  }
-  h1 {
-    font-size: $font-up-6;
-    @media screen and (max-width: 600px) {
-      font-size: $font-up-4;
-    }
-  }
-  .search-menu {
-    position: relative;
-  }
-  > div {
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  .search-input,
-  .search-context,
-  .results {
-    margin: 0 auto;
-    max-width: 600px;
-  }
-
-  .search-context {
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    top: 45px;
-  }
-
-  .results {
-    box-sizing: border-box;
-    background: var(--secondary);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    position: absolute;
-    width: 600px;
-    z-index: 9;
-    @media screen and (max-width: 599px) {
-      width: 100%;
-      .badge-wrapper {
-        display: none;
-      }
-    }
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    top: 39px;
-    right: 0;
-    padding: 2em 1em 1em 1em;
-    ul,
-    ol {
-      list-style-type: none;
-      margin: 0;
-    }
-    li.item {
-      margin-bottom: 10px;
-      a {
-        color: var(--primary);
-      }
-    }
-  }
-}
-
 .wrap-category-boxes {
   margin-top: 2em;
 }
@@ -846,115 +667,6 @@ tbody {
 .homepage-category-expansion {
   display: none;
   margin-left: auto;
-}
-
-// Carousel Styles
-
-@media screen and (max-width: 1110px) {
-  .wrap.carousel-wrap {
-    padding: 0;
-    margin-bottom: 3em;
-  }
-}
-
-.jcarousel-wrapper {
-  // required
-  margin: 0 auto;
-  background: var(--primary-very-low);
-  padding: 3em 0 2em;
-  position: relative;
-  @media screen and (max-width: 750px) {
-    margin-bottom: 2em;
-    padding: 0;
-  }
-}
-
-.jcarousel {
-  // required
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.jcarousel ul {
-  // required
-  width: 20000em;
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.jcarousel li {
-  // required
-  float: left;
-
-  iframe,
-  video {
-    display: flex;
-    margin: 0 auto;
-    width: 463px;
-    height: 260px;
-    text-align: center;
-    max-height: unset;
-    @media screen and (max-width: 1110px) {
-      height: calc(100vw * 0.25);
-      min-height: 260px;
-    }
-    @media screen and (max-width: 600px) {
-      width: 100%;
-      min-height: unset;
-      height: calc(100vw * 0.57);
-    }
-  }
-}
-
-.jcarousel img {
-  display: block;
-  max-width: 100%;
-  height: auto !important;
-  margin: 0 auto;
-}
-
-// Carousel Controls
-
-.jcarousel-control-prev,
-.jcarousel-control-next {
-  position: absolute;
-  top: 50%;
-  margin-top: -25px;
-  width: 2em;
-  height: 3em;
-  font-size: 1.25em;
-  text-align: center;
-  background: var(--tertiary);
-  color: var(--secondary);
-  display: flex;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s;
-  @media screen and (max-width: 600px) {
-    font-size: 0.875em;
-  }
-  &:hover {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.21);
-    background: var(--wyze-darken-tertiary);
-  }
-
-  .d-icon {
-    color: var(--secondary);
-  }
-}
-
-.jcarousel-control-prev {
-  left: 0;
-  border-radius: 0 $border-radius $border-radius 0;
-}
-
-.jcarousel-control-next {
-  right: 0;
-  border-radius: $border-radius 0 0 $border-radius;
 }
 
 // Hide likes column for roadmap
@@ -1053,6 +765,10 @@ body.category-roadmap {
   }
 }
 
+.badge-notification {
+  color: var(--primary) !important;
+}
+
 .badge-notification.new-posts {
   color: var(--primary);
 }
@@ -1068,26 +784,19 @@ body.category-roadmap {
   }
 }
 
-.search-image-left {
-  position: absolute;
-  left: 25px;
-  img {
-    width: 175px;
+.custom-search-banner {
+  background:
+    url($search-background-left) left,
+    url($search-background-right) right;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  @media screen and (max-width: $large-width) {
+    background: none;
   }
-}
-.search-image-right {
-  position: absolute;
-  right: 20px;
-  bottom: 50px;
-  img {
-    width: 250px;
-  }
-}
 
-@media screen and (max-width: $large-width) {
-  .search-image-left,
-  .search-image-right {
-    display: none;
+  .btn.search-icon {
+    padding: 0 0 0 0.5em;
+    border: none;
   }
 }
 
@@ -1114,6 +823,11 @@ body.category-roadmap {
       ) !important; // overrides some overspecific core style
     }
   }
+}
+
+.sidebar-section-link-content-text,
+.sidebar-more-section-links-details-summary {
+  text-transform: none;
 }
 
 .sidebar-section-wrapper
