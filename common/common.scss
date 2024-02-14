@@ -578,6 +578,10 @@ tbody {
     @media screen and (max-width: 700px) {
       margin-top: 1em;
     }
+    // hide uncategorized
+    [href='/c/wyze-news'] {
+      display: none;
+    }
     a.box {
       position: relative;
       min-width: 0;
@@ -602,11 +606,6 @@ tbody {
       }
       &.show {
         display: block !important;
-      }
-
-      // hide uncategorized
-      [href='/c/wyze-news'] {
-        display: none;
       }
     }
 
