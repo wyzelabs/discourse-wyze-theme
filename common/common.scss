@@ -104,7 +104,8 @@ button, // General button styles
   opacity: 1;
 }
 
-.btn-flat.close {
+.btn-flat.close,
+.btn.close {
   border: none;
 }
 
@@ -601,6 +602,11 @@ tbody {
       }
       &.show {
         display: block !important;
+      }
+
+      // hide uncategorized
+      [href='/c/wyze-news'] {
+        display: none;
       }
     }
 
