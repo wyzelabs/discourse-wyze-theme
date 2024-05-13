@@ -87,9 +87,9 @@ button, // General button styles
     // Destructive buttons
     background: var(--danger);
     border-color: var(--danger);
-    color: var(--secondary);
+    color: var(--danger);
     .d-icon {
-      color: var(--secondary);
+      color: var(--danger);
     }
     .discourse-no-touch & {
       &:hover {
