@@ -91,10 +91,28 @@ button, // General button styles
     .d-icon {
       color: var(--secondary);
     }
+    &.btn-transparent {
+      color: var(--danger);
+      .d-icon {
+        color: currentColor;
+      }
+    }
     .discourse-no-touch & {
       &:hover {
         background: var(--wyze-darken-danger);
         border-color: var(--wyze-darken-danger);
+      }
+    }
+  }
+
+  &.btn-transparent {
+    border: none;
+
+    .discourse-no-touch & {
+      &:hover {
+        .d-icon {
+          color: currentColor;
+        }
       }
     }
   }
