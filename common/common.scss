@@ -861,3 +861,9 @@ body.category-roadmap {
     color: var(--primary-medium);
   }
 }
+
+// round borders in PMs
+
+.archetype-private_message {
+  --pm-border-radius: 2em;
+}
