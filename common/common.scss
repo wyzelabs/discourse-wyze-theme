@@ -867,3 +867,31 @@ body.category-roadmap {
 .archetype-private_message {
   --pm-border-radius: 2em;
 }
+
+// about page plugin fixes
+
+.about-page {
+  section.about {
+    justify-content: space-between;
+
+    .about-user-card.no-bg,
+    .about-user-card.hide-bg {
+      margin-bottom: 5em !important; // overrides another important
+    }
+
+    .card-content > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-card-bg {
+      z-index: unset;
+    }
+  }
+
+  .about-user-card {
+    .names {
+      margin-top: -40px;
+    }
+  }
+}
