@@ -22,7 +22,7 @@ export default class CustomHomepage extends Component {
           </div>
           <div class="homepage-category-boxes">
             {{#each this.site.categories as |c|}}
-            <a href="/c/{{c.slug}}" class="box">
+            <a href="/c/{{c.id}}" class="box">
               <div class="homepage-category-box">
                 {{#if c.uploaded_logo}}
                 <div class="category-image-wrapper">
