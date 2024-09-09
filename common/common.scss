@@ -885,6 +885,7 @@ body.category-roadmap {
     }
 
     .about-card-bg {
+      position: absolute !important; // overrides another important
       z-index: unset;
     }
   }
