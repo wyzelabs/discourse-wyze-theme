@@ -879,9 +879,20 @@ body.category-roadmap {
       margin-bottom: 5em !important; // overrides another important
     }
 
-    .card-content > * {
-      position: relative;
-      z-index: 1;
+    .card-content {
+      > * {
+        position: relative;
+        z-index: 1;
+      }
+      > a {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+    }
+
+    .more-user-badges {
+      margin-top: 4px;
+      line-height: 1;
     }
 
     .about-card-bg {
