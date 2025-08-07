@@ -61,6 +61,13 @@ $border-radius: 3px; // Controls all border radii throughout the theme
   --d-button-primary-icon-color--hover: var(--secondary);
 }
 
+.d-icon.d-icon-d-regular,
+.d-icon.d-icon-d-muted,
+.d-icon.d-icon-d-watching-first,
+.d-icon.d-icon-d-watching-first-post {
+  color: var(--tertiary);
+}
+
 .btn-default {
   border: 1px solid var(--tertiary);
 }
