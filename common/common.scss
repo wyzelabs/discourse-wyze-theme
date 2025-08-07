@@ -1,4 +1,4 @@
-$nav-bg: #002632;
+$nav-bg: #1f1f1f;
 
 // Fonts
 
@@ -43,136 +43,26 @@ $border-radius: 3px; // Controls all border radii throughout the theme
 
 // Buttons, navs
 
-button, // General button styles
-.btn:not(.btn-flat):not(.sidebar-section-header),
-.list-controls .select-kit.categories-admin-dropdown button,
-.list-controls .select-kit.tags-admin-dropdown button,
-.list-controls .select-kit.category-notifications-button button,
-.list-controls .select-kit.tag-notifications-button button,
-#topic-footer-buttons .topic-notifications-button .btn {
-  padding: 6px 16px;
+:root {
+  // .btn-default
+  --d-button-default-text-color: var(--tertiary);
+  --d-button-default-text-color--hover: var(--secondary);
+  --d-button-default-bg-color: var(--secondary);
+  --d-button-default-bg-color--hover: var(--tertiary);
+  --d-button-default-icon-color: var(--tertiary);
+  --d-button-default-icon-color--hover: var(--secondary);
+
+  // .btn-primary
+  --d-button-primary-text-color: var(--secondary);
+  --d-button-primary-text-color--hover: var(--secondary);
+  --d-button-primary-bg-color: var(--tertiary);
+  --d-button-primary-bg-color--hover: var(--tertiary-hover);
+  --d-button-primary-icon-color: var(--secondary);
+  --d-button-primary-icon-color--hover: var(--secondary);
+}
+
+.btn-default {
   border: 1px solid var(--tertiary);
-  text-transform: uppercase;
-  background: transparent;
-  color: var(--tertiary);
-  border-radius: $border-radius;
-  .d-icon {
-    color: var(--tertiary);
-    opacity: 1;
-  }
-  .discourse-no-touch & {
-    &:hover {
-      background: var(--tertiary);
-      .d-icon {
-        color: var(--secondary);
-      }
-    }
-  }
-  &.btn-primary {
-    // Important buttons
-    border-color: var(--tertiary);
-    background: var(--tertiary);
-    color: var(--secondary);
-    .d-icon {
-      color: var(--secondary);
-    }
-    .discourse-no-touch & {
-      &:hover {
-        border-color: var(--wyze-darken-tertiary);
-        background: var(--wyze-darken-tertiary);
-      }
-    }
-  }
-  &.btn-danger {
-    // Destructive buttons
-    background: var(--danger);
-    border-color: var(--danger);
-    color: var(--secondary);
-    .d-icon {
-      color: var(--secondary);
-    }
-    &.btn-transparent {
-      color: var(--danger);
-      .d-icon {
-        color: currentColor;
-      }
-    }
-    .discourse-no-touch & {
-      &:hover {
-        background: var(--wyze-darken-danger);
-        border-color: var(--wyze-darken-danger);
-      }
-    }
-  }
-
-  &.btn-transparent {
-    border: none;
-
-    .discourse-no-touch & {
-      &:hover {
-        .d-icon {
-          color: currentColor;
-        }
-      }
-    }
-  }
-}
-
-.discourse-no-touch button:hover .d-icon {
-  color: inherit;
-}
-
-.btn-flat .d-icon {
-  opacity: 1;
-}
-
-.btn-flat.close,
-.btn.close {
-  border: none;
-}
-
-.select-kit.dropdown-select-box.composer-actions .d-icon {
-  // Composer reply-type dropdown
-  border-radius: $border-radius;
-}
-
-.select-kit.dropdown-select-box .select-kit-row .icons .d-icon {
-  border: none;
-}
-
-.d-editor-button-bar .btn {
-  // Buttons in the post composer
-  border: none !important;
-}
-
-#reply-control .reply-to .composer-controls button {
-  &:hover {
-    background: transparent;
-  }
-}
-
-.nav-pills > li {
-  // e.g. "latest | top | new | unread" nav
-  &.active > a {
-    border: 1px solid var(--quaternary);
-  }
-  > a {
-    border-radius: $border-radius;
-    padding: 6px 16px;
-    text-transform: uppercase;
-    border: 1px solid transparent;
-    &:hover {
-      background: transparent;
-      border: 1px solid var(--quaternary);
-      color: var(--quaternary);
-    }
-  }
-}
-
-.navigation-container {
-  details summary {
-    height: 100%;
-  }
 }
 
 .panel-body-bottom {
@@ -473,22 +363,11 @@ tbody {
 }
 
 .timeline-container {
-  // Timeline scrollbar in topic
-  .btn.toggle-admin-menu {
-    border: none;
-    margin-left: -0.75em;
-  }
   .topic-timeline .timeline-scrollarea {
     border-color: var(--primary-low);
   }
   .topic-timeline .timeline-handle {
     background: var(--tertiary);
-  }
-  .timeline-footer-controls {
-    .btn {
-      border: none;
-      margin-left: -0.75em;
-    }
   }
 }
 
