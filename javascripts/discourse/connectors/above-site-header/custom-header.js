@@ -1,43 +1,49 @@
-export default {
-  setupComponent(args, component) {
-    component.setProperties({
-      didInsertElement() {
-        this._super(...arguments)
+import Component from "@glimmer/component";
+import { action } from "@ember/object";
+import { tracked } from "@glimmer/tracking";
+import { inject as service } from "@ember/service";
 
-        if (!this.site.mobileView) {
-          ;(function ($) {
-            $('.dropdown-toggle').hover(
-              function () {
-                $(this)
-                  .children('.community-dropdown')
-                  .stop(true, true)
-                  .slideDown('fast')
-              },
-              function () {
-                $(this)
-                  .children('.community-dropdown')
-                  .stop(true, true)
-                  .slideUp('slow')
-              }
-            )
-          })(jQuery)
-        }
+export default class CustomHeaderComponent extends Component {
+  @service site;
+  @tracked dropdownOpen = false;
 
-        if (this.site.mobileView) {
-          $(function () {
-            $('.dropdown-toggle').on('click', function () {
-              event.stopPropagation()
-              $('.community-dropdown').toggle()
-            })
-            $('.community-dropdown').on('click', function (event) {
-              event.stopPropagation()
-            })
-            $(document).on('click', function () {
-              $('.community-dropdown').hide()
-            })
-          })
-        }
-      },
-    })
-  },
+  @action
+  handleDropdownMouseEnter(event) {
+    if (!this.site.mobileView) {
+      const dropdown = event.target.querySelector('.community-dropdown');
+      if (dropdown) {
+        dropdown.style.display = 'block';
+      }
+    }
+  }
+
+  @action
+  handleDropdownMouseLeave(event) {
+    if (!this.site.mobileView) {
+      const dropdown = event.target.querySelector('.community-dropdown');
+      if (dropdown) {
+        dropdown.style.display = 'none';
+      }
+    }
+  }
+
+  @action
+  toggleDropdown(event) {
+    if (this.site.mobileView) {
+      event.stopPropagation();
+      this.dropdownOpen = !this.dropdownOpen;
+    }
+  }
+
+  @action
+  preventClose(event) {
+    event.stopPropagation();
+  }
+
+  @action
+  closeDropdown() {
+    if (this.site.mobileView) {
+      this.dropdownOpen = false;
+    }
+  }
 }

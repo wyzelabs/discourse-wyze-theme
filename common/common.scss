@@ -328,6 +328,10 @@ li.dropdown-toggle {
     }
     left: -15px;
     border-top: 10px solid transparent;
+    
+    &.mobile-open {
+      display: block;
+    }
     li {
       background: #f1f3f3;
       display: block;
