@@ -1,15 +1,23 @@
-<div class='wyze-nav' {{on "click" this.closeDropdown}}>
+<div class='wyze-nav' {{on 'click' this.closeDropdown}}>
   <div class='wrap'>
     <div class='left-nav'>
       <ul>
         <li class='desktop-only'>
           <a href='https://wyze.com/shop-wyze'>Shop</a>
         </li>
-        <li class='dropdown-toggle' {{on "mouseenter" this.handleDropdownMouseEnter}} {{on "mouseleave" this.handleDropdownMouseLeave}} {{on "click" this.toggleDropdown}}>
+        <li
+          class='dropdown-toggle'
+          {{on 'mouseenter' this.handleDropdownMouseEnter}}
+          {{on 'mouseleave' this.handleDropdownMouseLeave}}
+          {{on 'click' this.toggleDropdown}}
+        >
           <a href='/' class='desktop-only'>Forum</a><span
             class='mobile-only'
           >Forum</span>
-          <ul class='community-dropdown {{if this.dropdownOpen "mobile-open"}}' {{on "click" this.preventClose}}>
+          <ul
+            class='community-dropdown {{if this.dropdownOpen "mobile-open"}}'
+            {{on 'click' this.preventClose}}
+          >
             <li><a href='/c/news'>Wyze News</a></li>
             <li><a href='/c/wishlist/12/l/latest?order=votes'>Wishlist</a></li>
             <li><a href='/c/beta'>Wyze Beta</a></li>

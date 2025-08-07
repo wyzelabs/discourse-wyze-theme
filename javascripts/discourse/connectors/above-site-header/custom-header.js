@@ -1,18 +1,19 @@
-import Component from "@glimmer/component";
-import { action } from "@ember/object";
-import { tracked } from "@glimmer/tracking";
-import { inject as service } from "@ember/service";
+import Component from '@glimmer/component'
+import { action } from '@ember/object'
+import { tracked } from '@glimmer/tracking'
+import { inject as service } from '@ember/service'
 
 export default class CustomHeaderComponent extends Component {
-  @service site;
-  @tracked dropdownOpen = false;
+  @service site
+  @service siteSettings
+  @tracked dropdownOpen = false
 
   @action
   handleDropdownMouseEnter(event) {
     if (!this.site.mobileView) {
-      const dropdown = event.target.querySelector('.community-dropdown');
+      const dropdown = event.target.querySelector('.community-dropdown')
       if (dropdown) {
-        dropdown.style.display = 'block';
+        dropdown.style.display = 'block'
       }
     }
   }
@@ -20,9 +21,9 @@ export default class CustomHeaderComponent extends Component {
   @action
   handleDropdownMouseLeave(event) {
     if (!this.site.mobileView) {
-      const dropdown = event.target.querySelector('.community-dropdown');
+      const dropdown = event.target.querySelector('.community-dropdown')
       if (dropdown) {
-        dropdown.style.display = 'none';
+        dropdown.style.display = 'none'
       }
     }
   }
@@ -30,20 +31,20 @@ export default class CustomHeaderComponent extends Component {
   @action
   toggleDropdown(event) {
     if (this.site.mobileView) {
-      event.stopPropagation();
-      this.dropdownOpen = !this.dropdownOpen;
+      event.stopPropagation()
+      this.dropdownOpen = !this.dropdownOpen
     }
   }
 
   @action
   preventClose(event) {
-    event.stopPropagation();
+    event.stopPropagation()
   }
 
   @action
   closeDropdown() {
     if (this.site.mobileView) {
-      this.dropdownOpen = false;
+      this.dropdownOpen = false
     }
   }
 }
