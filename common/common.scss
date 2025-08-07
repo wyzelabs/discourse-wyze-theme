@@ -195,7 +195,7 @@ li.dropdown-toggle {
     li {
       padding: 14px 0 16px 0;
       margin: 0 16px;
-      background: #002632;
+      background: $nav-bg;
       z-index: 2;
       white-space: nowrap;
       @media screen and (max-width: 475px) {
