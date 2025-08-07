@@ -44,7 +44,7 @@ $border-radius: 3px; // Controls all border radii throughout the theme
 // Buttons, navs
 
 button, // General button styles
-.btn:not(.btn-flat),
+.btn:not(.btn-flat):not(.sidebar-section-header),
 .list-controls .select-kit.categories-admin-dropdown button,
 .list-controls .select-kit.tags-admin-dropdown button,
 .list-controls .select-kit.category-notifications-button button,
@@ -116,6 +116,10 @@ button, // General button styles
       }
     }
   }
+}
+
+.discourse-no-touch button:hover .d-icon {
+  color: inherit;
 }
 
 .btn-flat .d-icon {
@@ -328,7 +332,7 @@ li.dropdown-toggle {
     }
     left: -15px;
     border-top: 10px solid transparent;
-    
+
     &.mobile-open {
       display: block;
     }
@@ -812,8 +816,7 @@ body.category-roadmap {
 }
 
 .custom-search-banner {
-  background:
-    url($search-background-left) left,
+  background: url($search-background-left) left,
     url($search-background-right) right;
   background-size: 20%;
   background-repeat: no-repeat;
@@ -909,5 +912,21 @@ body.category-roadmap {
     .names {
       margin-top: -40px;
     }
+  }
+}
+
+.category-heading.--has-logo {
+  --category-header-logo-size: 5em;
+  border: none;
+  padding: 0;
+
+  .category-logo.aspect-image img {
+    width: 100%;
+    height: auto;
+    padding: 0.5em;
+  }
+
+  .badge-category__wrapper .badge-category.--style-square::before {
+    display: none;
   }
 }
