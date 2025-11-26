@@ -7,9 +7,7 @@
     "neutrif-regular-italic": "assets/neutrif-pro-regular-italic.woff",
     "neutrif-bold": "assets/neutrif-pro-bold.woff",
     "neutrif-bold-italic": "assets/neutrif-pro-bold-italic.woff",
-    "logo": "assets/logo-white.png",
-    "search-background-left": "assets/search-background-left.png",
-    "search-background-right": "assets/search-background-right.png"
+    "logo": "assets/logo-white.png"
   },
   "components": [
     "https://github.com/discourse/discourse-showcased-categories",

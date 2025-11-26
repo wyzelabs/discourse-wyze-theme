@@ -384,17 +384,6 @@ tbody {
 
 // Custom homepage layout
 
-.show-custom-homepage {
-  #main-outlet-wrapper #main-outlet {
-    // for reordering theme components
-    display: flex;
-    flex-direction: column;
-    .search-banner {
-      order: -1;
-    }
-  }
-}
-
 .show-custom-homepage .custom-homepage-columns {
   // Two column section with post feeds
   display: flex;
@@ -698,21 +687,6 @@ body.category-roadmap {
         color: var(--secondary);
       }
     }
-  }
-}
-
-.custom-search-banner {
-  background: url($search-background-left) left,
-    url($search-background-right) right;
-  background-size: 20%;
-  background-repeat: no-repeat;
-  @media screen and (max-width: $large-width) {
-    background: none;
-  }
-
-  .btn.search-icon {
-    padding: 0 0 0 0.5em;
-    border: none;
   }
 }
 
