@@ -12,7 +12,6 @@
     "search-background-right": "assets/search-background-right.png"
   },
   "components": [
-    "https://github.com/discourse/discourse-search-banner.git",
     "https://github.com/discourse/discourse-showcased-categories",
     "https://github.com/discourse/discourse-like-column"
   ],
